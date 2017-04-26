@@ -1,0 +1,39 @@
+{
+   "0":{
+        "Site":{
+            "id":"GD3982930",
+            "org_name":"Brandon's Org",
+            "address":"8419 W 91st Terrace",
+            "city":"Overland Park",
+            "state":"Kansas",
+            "zip":"66212",
+            "country":"United States of America",
+            "practicum_number":"1"
+        },
+        "Practicum": {
+            "id":"DBM392903892",
+            "title":"Brandon's awesome practicum title",
+            "term":"Spring 2018",
+            "description":"Here is the description"
+        }
+   },
+    
+    "1":{
+        "Site":{
+            "id":"GD039472873",
+            "org_name":"Taylor's Org",
+            "address":"8419 W 91st Terrace",
+            "city":"Overland Park",
+            "state":"Kansas",
+            "zip":"66212",
+            "country":"United States of America",
+            "practicum_number":"1"
+        },
+        "Practicum": {
+            "id":"DdwijM392903892",
+            "title":"Taylor's awesome practicum title",
+            "term":"Spring 2020",
+            "description":"Here is the description"
+        }
+    }
+}
