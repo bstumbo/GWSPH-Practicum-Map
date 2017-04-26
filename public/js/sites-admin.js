@@ -30,7 +30,13 @@ $(document).ready(function(){
     });
 
     //delete task and remove it from list
-    $('.delete-task').click(function(){
+    $('.delete-site').click(function(){
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+         
         var site_id = $(this).val();
 
         $.ajax({

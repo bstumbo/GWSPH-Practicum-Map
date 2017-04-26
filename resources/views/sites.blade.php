@@ -1,32 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <title>Sites</title>
+@extends('layouts.admin')
 
-    <!-- Load Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    ul.pagination li {
-    display: inline;
-    }
-    
-    table {
-        border: 1px solid black;
-        padding: 5px; 
-    }
-    
-    tr {
-        margin-top: 5px;
-    }
-    
-    td {
-        padding: 5px;
-        border: 1px solid black;
-    }
-</style>
-</head>
-<body>
+@section('content')
 <h1>Sites</h1>
+    <button id="btn-add" name="btn-add" class="btn btn-primary btn-xs">Add New Site</button>
     <table class="table">
         <thead>
             <tr>
@@ -49,12 +25,14 @@
                     <td style="width: 16%; text-align: center;">{{$site->country}}</td>
                     <td>
                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$site->id}}">Edit</button>
-                       <button class="btn btn-danger btn-xs btn-delete delete-task" value="{{$site->id}}">Delete</button>
+                       <button class="btn btn-danger btn-xs btn-delete delete-site" value="{{$site->id}}">Delete</button>
                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    
+     <div style="width: 400px; margin-right: auto; margin-left: auto;">{{ $sites->links() }}</div> 
     
      
         
@@ -71,7 +49,7 @@
                     <div class="form-group error">
                         <label for="inputTask" class="col-sm-3 control-label">Site ID</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control has-error" id="site_id" name="site_id" value="" readonly>
+                            <input type="text" class="form-control has-error" id="site_id" name="site_id" value="">
                         </div>
                     </div>  
                     <div class="form-group error">
@@ -119,13 +97,9 @@
         </div>
     </div>
 </div>
-
-
         
-<meta name="_token" content="{!! csrf_token() !!}" />  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{{asset('js/sites-admin.js')}}"></script>
+@endsection
 
-</body>   
-</html>

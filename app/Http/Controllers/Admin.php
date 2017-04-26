@@ -39,9 +39,23 @@ class Admin extends Controller
     */
     
     function createSite(Request $request) {
-        $site = Site::create($request->all());
+        $site = new Site;
         
-        return Respone::json($site);
+        $site->id = $request->id;
+        $site->org_name = $request->org_name;
+        $site->address = $request->address;
+        $site->city = $request->city;
+        $site->state = $request->state;
+        $site->zip = $request->zip;
+        $site->country = $request->country;
+        //$newSite->practicum_number= $data['practicum_number'];
+        $address = $request->address . ", " . $request->city . ", " . $request->state . " " . $request->zip;
+        $coordinates = app('geocoder')->geocode($address)->get()->first()->getCoordinates();
+        $site->latitude = $coordinates->getLatitude();
+        $site->longitude = $coordinates->getLongitude();
+        $site->save();
+        
+        return Response::json($site);
        }
        
     function readSite($site_id) {
@@ -85,13 +99,13 @@ class Admin extends Controller
      function createPrac(Request $request) {
          $practicum = Practicum::create($request->all());
         
-        return Respone::json($practicum);
+        return Response::json($practicum);
     }
     
     function readPrac($practicum_id) {
-        $practicum = Practicum::all($practicum_id);
+        $practicum = Practicum::find($practicum_id);
        
-        return Response::json($practicum_id);
+        return Response::json($practicum);
         
     }
     
@@ -99,13 +113,14 @@ class Admin extends Controller
         
     /* Find practicum being up dated */
      
-        $practicum = Practicum::all($practicum_id);
+        $practicum = Practicum::find($practicum_id);
         
     /* Set values of $practicum to values of $request */
         
         $practicum->id = $request->id;
         $practicum->title = $request->title;
         $practicum->term = $request->term;
+        $practicum->description = $request->description;
         $practicum->department = $request->department;
         $practicum->site_id = $request->site_id;
         

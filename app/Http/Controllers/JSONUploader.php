@@ -42,11 +42,11 @@ class JSONUploader extends Controller
         }
     }
     
-    public function uploadJSON() {
+    public function uploadJSON(Request $request) {
          
     /* Get the contents of the uploaded JSON file */
         
-        $jsondata = file_get_contents('new_report.json');
+        $jsondata = file_get_contents($request->fd);
          
     /* Convert data to associative array */     
          
