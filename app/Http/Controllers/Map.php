@@ -20,18 +20,25 @@ class Map extends Controller
     
      public function index() {
         
-        $practicums = Practicum::paginate(15);
-        $sites = Site::all();
+        $mapsites = Site::all();
         
+        $siteprac = [];
         
-       
-       return view('map', array('sites' => $sites, 'practicums' => $practicums));
+        foreach ($mapsites as $site) {
+            $practicums = Practicum::all()->where('site_id', $site->id);
+            $siteprac[] = array('site' => $site, 'practicums' => $practicums);
+        }
+        
+       // $practicums = Practicum::paginate(15);
+        
+       return view('map', array('sites' => $mapsites, 'siteprac' => $siteprac));
        //return response(view('map', array('sites' => $sites, 'practicums' => $practicums), 200, ['Content-Type' => 'application/json'])->render());
        
     }
     
     public function deptfilter(Request $request) {
         $sites = [];
+        $siteprac = [];
         $department = $request->all();
         $practicums = Practicum::all()->where('department', $department['department']);
         foreach ($practicums as $practicum){
@@ -39,7 +46,12 @@ class Map extends Controller
             $sites[] = $site;
         }
         
+        foreach ($sites as $site) {
+             $practicums = Practicum::all()->where('site_id', $site->id);
+            $siteprac[] = array('site' => $site, 'practicums' => $practicums);
+        }
+    
 
-        return Response::json(['practicums' => $practicums, 'sites' => $sites]);
+        return Response::json(['siteprac' => $siteprac, 'sites' => $sites]);
     }
 }

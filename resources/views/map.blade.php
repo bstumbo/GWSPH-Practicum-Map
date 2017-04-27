@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-  <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJsvr80YY4kZ4n1gcfpSNrz3dU7Ln1BEI"></script>
+<script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJsvr80YY4kZ4n1gcfpSNrz3dU7Ln1BEI"></script>
 <style>
   #mapid { height: 400px; width: 100%; }
   
@@ -36,33 +36,35 @@
   </div>
   
   <div id="practicum-ajax"></div>
-  
-  <!-- Table-to-load-the-data Part -->
-  <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Term</th>
-                        <th>Department</th>
-                    </tr>
-                </thead>
-                <tbody id="practicum-list"  name="practicum-list">
-                  @foreach ($practicums as $practicum)
-                    <tr id="{{$practicum->id}}">
-                        <td style="width: 20%; text-align: center;">{{$practicum->id}}</td>
-                        <td style="width: 20%; text-align: center;">{{$practicum->title}}</td>
-                        <td style="width: 20%; text-align: center;">{{$practicum->term}}</td>
-                        <td style="width: 20%; text-align: center;">{{$practicum->department}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
-            <div style="width: 400px; margin-right: auto; margin-left: auto;">{{ $practicums->links() }}</div> 
-    
-  <!-- End of Table-to-load-the-data Part -->
-            
+   
+  <div style="margin: 20px;">
+    <div style="width: 25%; float: left;"><p align=center><strong>Organization Name</strong></p></div>
+    <div style="width: 25%; float: left;"><p align=center><strong>City</strong></p></div>
+    <div style="width: 25%; float: left;"><p align=center><strong>State</strong></p></div>
+    <div style="width: 25%; float: left;"><p align=center><strong>Country</strong></p></div>
+  </div>
+  <div id="practicum-list"> 
+    @foreach($siteprac as $entry)
+     <div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;">
+       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->org_name}}</p></div>
+       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->city}}</p></div>
+       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->state}}</p></div>
+       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->country}}</p></div>
+       <div style="width:100%; display:none;" class="sub-row" id="{{$entry['site']->id}}">
+         <table style="width: 100%; border: 1px solid black;">
+           @foreach($entry['practicums'] as $prac)
+             <tr id="{{$prac->id}}">
+               <td style="width: 33%; text-align: center;">{{$prac->title}}</td>
+               <td style="width: 33%; text-align: center;">{{$prac->term}}</td>
+               <td style="width: 33%; text-align: center;">{{$prac->department}}</td>
+             </tr>
+           @endforeach  
+         </table>
+       </div>
+     </div> 
+    @endforeach
+  </div>
+   
  
  <script type="text/javascript">
   var mymap = new L.Map('mapid', {center: new L.LatLng(37.0902, -95.7129), zoom: 4});
@@ -78,7 +80,6 @@
     
     for (var i = 0; i < sitejson.length; i++) {
       
-      //document.write(json[i].latitude);
       var orgname = sitejson[i].org_name;
       var infostring = orgname.concat(sitejson[i].city, sitejson[i].state);
       var marker = L.marker([sitejson[i].latitude, sitejson[i].longitude]).addTo(mymap)
