@@ -44,9 +44,11 @@ class JSONUploader extends Controller
     
     public function uploadJSON(Request $request) {
          
+        $file = $request->file('file');
+         
     /* Get the contents of the uploaded JSON file */
         
-        $jsondata = file_get_contents($request->fd);
+        $jsondata = file_get_contents($file);
          
     /* Convert data to associative array */     
          
@@ -56,7 +58,8 @@ class JSONUploader extends Controller
      * If it does, override current data with new data
      */
         
-        $dud = [];    
+        $dud = [];
+        $catch = [];
     
        foreach ($entry as $data) {
         
@@ -103,7 +106,7 @@ class JSONUploader extends Controller
             $newPracticum->save();
             
            } catch (\Exception $e) {
-                echo "Something went wrong with" . " " . "Practicum: " . $newPracticum->id . " " . "Site: " . $newSite->org_name . "<br>";
+                $catch[] = $data; 
            }
         } else {
             $dud[] = $data;
@@ -112,7 +115,7 @@ class JSONUploader extends Controller
        } 
         
          
-         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud));
+         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud, 'catches' => $catch));
          
     }
 }

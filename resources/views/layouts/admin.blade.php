@@ -41,19 +41,20 @@
                         <h4 class="modal-title" id="myModalLabel">Import Symplicity JSON</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="frmImport" name="frmImport" class="form-horizontal"  novalidate="">
+                        <form id="frmImport" name="frmImport" method="POST" action="/practicummap/public/uploaded" class="form-horizontal"  novalidate="" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="form-group error">
                                 <label for="inputTask" class="col-sm-3 control-label">JSON File</label>
                                 <div class="col-sm-9">
                                     <input type="file" class="form-control has-error" id="file" name="file" accept=".json">
                                 </div>
                             </div>
-                        
+                        <input type="submit" value="submit" class="btn btn-primary">
                         </form>
                     </div>
                     <div class="modal-footer">
                         <!--<input type="submit" value="submit" class="btn btn-primary">-->
-                        <button type="button" class="btn btn-primary" id="btn-upload" value="add">Import</button>
+                        <!--<button type="button" class="btn btn-primary" id="btn-upload" value="upload">Import</button>-->
                         <!--<input type="hidden" id="site_id" name="site_id" value="0">-->
                     </div>
                 </div>
