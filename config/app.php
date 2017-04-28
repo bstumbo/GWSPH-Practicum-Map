@@ -183,6 +183,12 @@ return [
          */
         
         Geocoder\Laravel\Providers\GeocoderService::class,
+        
+        /*
+         * Scout Service Provider (Full-text search for models)
+         */
+        
+        Laravel\Scout\ScoutServiceProvider::class,
 
     ],
 
