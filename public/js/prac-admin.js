@@ -64,7 +64,7 @@ $(document).ready(function(){
         e.preventDefault(); 
 
         var formData = {
-            id: $('#prac_id').val(),
+            prac_id: $('#prac_id').val(),
             title:$('#title').val(),
             term: $('#term').val(),
             description: $('#description').val(),
@@ -95,9 +95,9 @@ $(document).ready(function(){
             success: function (data) {
                 console.log(data);
 
-                var prac = '<tr id="#' + data.id + '"><td style="width: 16%; text-align: center;">' + data.title + '</td><td style="width: 16%; text-align: center;">' + data.term + '</td><td style="width: 16%; text-align: center;">' + data.description + '</td><td style="width: 16%; text-align: center;">' + data.department + '</td><td style="width: 16%; text-align: center;">' + data.site_id + '</td>';
-                prac += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button>';
-                prac += '<button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.id + '">Delete</button></td></tr>';
+                var prac = '<tr id="#' + data.prac_id + '"><td style="width: 16%; text-align: center;">' + data.title + '</td><td style="width: 16%; text-align: center;">' + data.term + '</td><td style="width: 16%; text-align: center;">' + data.description + '</td><td style="width: 16%; text-align: center;">' + data.department + '</td><td style="width: 16%; text-align: center;">' + data.site_id + '</td>';
+                prac += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.prac_id + '">Edit</button>';
+                prac += '<button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.prac_id + '">Delete</button></td></tr>';
 
                 if (state == "add"){ //if user added a new record
                     $('#practicums').append(prac);

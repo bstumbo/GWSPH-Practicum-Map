@@ -18,6 +18,7 @@
           <label for="inputTask" class="col-sm-3 control-label">Practicum</label>
           <div class="col-sm-9">
               <select name="department">
+               <option selected="selected" value=null>Search by Department</option>
                 <option value="Epidemiology and Biostatistics">Epidemiology and Biostatistics</option>
                 <option value="Environmental and Occupational Health">Environmental and Occupational Health</option>
                 <option value="Exercise and Nutrition Sciences">Exercise and Nutrition Sciences</option>
@@ -26,11 +27,24 @@
                 <option value="Online MPH @ GW">Online MPH @ GW</option>
                   <option value="Prevention and Community Health">Prevention and Community Health</option>
               </select>
-          </div>
-            <div class="col-sm-9">
-              <input type="submit" value="Submit">
-          </div>
-            
+          </div>        
+      </div>
+        <div class="form-group error">
+          <label for="inputTask" class="col-sm-3 control-label">Term</label>
+          <div class="col-sm-9">
+              <select id="term" name="term">
+                <option selected="selected" value=null>Search by Work Term</option>
+                <option value="Spring 2016">Spring 2016</option>
+                <option value="Summer 2016">Summer 2016</option>
+                <option value="Fall 2016">Fall 2016</option>
+                <option value="Spring 2017">Spring 2017</option>
+                <option value="Summer 2017">Summer 2017</option>
+                <option value="Fall 2017">Fall 2017</option>
+              </select>
+          </div>        
+      </div>
+      <div class="col-sm-9">
+        <input type="submit" value="Submit">
       </div>
     </form>
   </div>
@@ -53,7 +67,7 @@
        <div style="width:100%; display:none;" class="sub-row" id="{{$entry['site']->id}}">
          <table style="width: 100%; border: 1px solid black;">
            @foreach($entry['practicums'] as $prac)
-             <tr id="{{$prac->id}}">
+             <tr id="{{$prac->prac_id}}">
                <td style="width: 33%; text-align: center;">{{$prac->title}}</td>
                <td style="width: 33%; text-align: center;">{{$prac->term}}</td>
                <td style="width: 33%; text-align: center;">{{$prac->department}}</td>

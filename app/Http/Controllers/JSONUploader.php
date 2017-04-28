@@ -97,7 +97,7 @@ class JSONUploader extends Controller
             $newSite->longitude = $coordinates->getLongitude();
             $newSite->save();
                      
-            $newPracticum->id = $data['prac_id'];
+            $newPracticum->prac_id = $data['prac_id'];
             $newPracticum->title = $data['title'];
             $newPracticum->term = $data['term'];
             $newPracticum->department = $data['department'];

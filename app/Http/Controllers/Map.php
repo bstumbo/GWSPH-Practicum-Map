@@ -7,6 +7,7 @@ use Response;
 use App\Site;
 use App\Practicum;
 use Geocoder\Laravel\Facades\Geocoder;
+use Illuminate\Support\Facades\DB;
 
 class Map extends Controller
 {
@@ -21,26 +22,36 @@ class Map extends Controller
      public function index() {
         
         $mapsites = Site::all();
-        
+
         $siteprac = [];
         
-        foreach ($mapsites as $site) {
+       foreach ($mapsites as $site) {
             $practicums = Practicum::all()->where('site_id', $site->id);
             $siteprac[] = array('site' => $site, 'practicums' => $practicums);
         }
-        
+         
        // $practicums = Practicum::paginate(15);
         
        return view('map', array('sites' => $mapsites, 'siteprac' => $siteprac));
-       //return response(view('map', array('sites' => $sites, 'practicums' => $practicums), 200, ['Content-Type' => 'application/json'])->render());
-       
+    
     }
     
-    public function deptfilter(Request $request) {
+    public function deptfilter(Request $request, Practicum $practicum) {
         $sites = [];
         $siteprac = [];
-        $department = $request->all();
-        $practicums = Practicum::all()->where('department', $department['department']);
+        
+        $practicum = $practicum->newQuery();
+        
+         if ($request->department !== "null") {
+            $practicum->where('department', $request->input('department'))->get();
+        }
+        
+        if ($request->term !== "null") {
+            $practicum->where('term', $request->input('term'))->get();
+        }
+                
+         $practicums = $practicum->get();
+       
         foreach ($practicums as $practicum){
             $site = Site::find($practicum['site_id']);
             $sites[] = $site;
@@ -54,4 +65,5 @@ class Map extends Controller
 
         return Response::json(['siteprac' => $siteprac, 'sites' => $sites]);
     }
+            
 }

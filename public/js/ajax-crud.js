@@ -2,9 +2,7 @@ $(document).ready(function(){
     
     /* Show practicums under site
     */
-    
-    
-    
+
     $("#practicum-list").on("click", ".site-row", function(){
          console.log("clicked");
         $(".sub-row", this).toggle();
