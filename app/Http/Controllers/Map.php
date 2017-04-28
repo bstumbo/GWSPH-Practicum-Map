@@ -36,11 +36,12 @@ class Map extends Controller
     
     }
     
-    public function deptfilter(Request $request, Practicum $practicum) {
+    public function deptfilter(Request $request, Practicum $practicum, Site $site) {
         $sites = [];
         $siteprac = [];
         
         $practicum = $practicum->newQuery();
+        $site = $site->newQuery();
         
          if ($request->department !== "null") {
             $practicum->where('department', $request->input('department'))->get();
@@ -49,7 +50,24 @@ class Map extends Controller
         if ($request->term !== "null") {
             $practicum->where('term', $request->input('term'))->get();
         }
-                
+        
+        if ($request->has('city')) {
+            $subset =  $site->where('city', $request->input('city'))->get();
+           if(count($subset) > 1){
+            foreach ($subset as $set) {
+                foreach ($set as $s) {
+                    $practicum->where('site_id', $s['id']);
+                }
+            }
+           } else {
+           
+            foreach ($subset as $set) {
+            $practicum->where('site_id', $set->id);
+            }
+           
+           }
+        }
+         
          $practicums = $practicum->get();
        
         foreach ($practicums as $practicum){
