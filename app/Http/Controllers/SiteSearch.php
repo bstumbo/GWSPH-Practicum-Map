@@ -12,7 +12,7 @@ class SiteSearch extends Controller
 {
     public static function apply(Request $filters, Practicum $practicum, Site $site)
     {
-       $sites = [];
+        $sites = [];
         $siteprac = [];
         
         $practicum = $practicum->newQuery();
@@ -41,13 +41,17 @@ class SiteSearch extends Controller
          */
         
         if ($filters->has('city')) {
+            
             $subset =  $site->where('city', $filters->input('city'))->get();
-           if(count($subset) > 1){
-            foreach ($subset as $set) {
-                foreach ($set as $s) {
-                    $practicum->where('site_id', $s['id']);
+           
+           if (count($subset) == 0){
+                    $practicum->where('site_id', '0');
+            } elseif(count($subset) > 1){
+                foreach ($subset as $set) {
+                    foreach ($set as $s) {
+                        $practicum->where('site_id', $s['id']);
+                    }
                 }
-            }
            } else {
            
             foreach ($subset as $set) {
@@ -63,12 +67,15 @@ class SiteSearch extends Controller
          
          if ($filters->has('state')) {
             $subset =  $site->where('state', $filters->input('state'))->get();
-           if(count($subset) > 1){
-            foreach ($subset as $set) {
-                foreach ($set as $s) {
-                    $practicum->where('site_id', $s['id']);
+           
+           if (count($subset) == 0){
+                    $practicum->where('site_id', '0');
+            } elseif(count($subset) > 1){
+                foreach ($subset as $set) {
+                    foreach ($set as $s) {
+                        $practicum->where('site_id', $s['id']);
+                    }
                 }
-            }
            } else {
            
             foreach ($subset as $set) {
@@ -84,36 +91,46 @@ class SiteSearch extends Controller
          
          if ($filters->has('country')) {
             $subset =  $site->where('country', $filters->input('country'))->get();
-           if(count($subset) > 1){
-            foreach ($subset as $set) {
-                foreach ($set as $s) {
-                    $practicum->where('site_id', $s['id']);
+                
+                if (count($subset) == 0){
+                    $practicum->where('site_id', '0');
+                } elseif (count($subset) > 1){
+                 foreach ($subset as $set) {
+                     foreach ($set as $s) {
+                         $practicum->where('site_id', $s['id']);
+                     }
+                 }
+                } else {
+                 foreach ($subset as $set) {
+                 $practicum->where('site_id', $set->id);
+                 }
                 }
-            }
-           } else {
-           
-            foreach ($subset as $set) {
-            $practicum->where('site_id', $set->id);
-            }
-           
-           }
         }
         
     
         $practicums = $practicum->get();
-    
-       
+          
+
         foreach ($practicums as $practicum){
             $site = Site::find($practicum['site_id']);
             $sites[] = $site;
+            
         }
         
-        foreach ($sites as $site) {
-             $practicum = $practicums->where('site_id', $site->id);
+         /*
+          * Remove duplicate sites
+          */
+         
+        $finalsites = array_unique($sites);
+        
+        foreach ($finalsites as $site) {
+            $practicum = $practicums->where('site_id', $site->id);
             $siteprac[] = array('site' => $site, 'practicums' => $practicum);
         }
     
 
-        return Response::json(['siteprac' => $siteprac, 'sites' => $sites]);
+        return Response::json(['siteprac' => $siteprac, 'sites' => $finalsites]);
+    
+        
     }
 }
