@@ -20,6 +20,23 @@ class SiteSearch extends Controller
         
         
         /*
+         * Filter practicums by department 
+         */
+        
+         if ($filters->department !== "null") {
+            $practicum->where('department', $filters->input('department'))->get();
+        }
+        
+        /*
+         * Filterm practicums by term
+         */
+        
+        if ($filters->term !== "null") {
+            $practicum->where('term', $filters->input('term'))->get();
+        }
+        
+         
+        /*
          * Fitler practicum by city
          */
         
@@ -40,24 +57,50 @@ class SiteSearch extends Controller
            }
         }
         
-        /*
-         * Filter practicums by department 
+         /*
+         * Fitler practicum by State
          */
-        
-         if ($filters->department !== "null") {
-            $practicum->where('department', $filters->input('department'))->get();
-        }
-        
-        /*
-         * Filterm practicums by term
-         */
-        
-        if ($filters->term !== "null") {
-            $practicum->where('term', $filters->input('term'))->get();
-        }
-        
          
-         $practicums = $practicum->get();
+         if ($filters->has('state')) {
+            $subset =  $site->where('state', $filters->input('state'))->get();
+           if(count($subset) > 1){
+            foreach ($subset as $set) {
+                foreach ($set as $s) {
+                    $practicum->where('site_id', $s['id']);
+                }
+            }
+           } else {
+           
+            foreach ($subset as $set) {
+            $practicum->where('site_id', $set->id);
+            }
+           
+           }
+        }
+        
+         /*
+         * Fitler practicum by Country
+         */
+         
+         if ($filters->has('country')) {
+            $subset =  $site->where('country', $filters->input('country'))->get();
+           if(count($subset) > 1){
+            foreach ($subset as $set) {
+                foreach ($set as $s) {
+                    $practicum->where('site_id', $s['id']);
+                }
+            }
+           } else {
+           
+            foreach ($subset as $set) {
+            $practicum->where('site_id', $set->id);
+            }
+           
+           }
+        }
+        
+    
+        $practicums = $practicum->get();
     
        
         foreach ($practicums as $practicum){
