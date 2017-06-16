@@ -12,7 +12,7 @@
 */
 
 Route::get('/','Map@index');
-Route::post('/departments', 'Map@deptfilter');
+Route::post('/departments', 'SiteSearch@apply');
 Route::get('/upload', 'JSONUploader@index');
 Route::post('/uploaded', 'JSONUploader@uploadJSON');
 Route::get('/sites', 'Admin@sitesAll');

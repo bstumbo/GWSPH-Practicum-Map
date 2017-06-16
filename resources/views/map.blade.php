@@ -44,7 +44,7 @@
           </div>        
       </div>
         <div class="form-group error">
-          <label for="inputTask" class="col-sm-3 control-label">Term</label>
+          <label for="inputTask" class="col-sm-3 control-label">City</label>
           <div class="col-sm-9">
               <input type="text" id="city" name="city" value="">
           </div>        

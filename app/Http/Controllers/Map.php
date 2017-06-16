@@ -35,53 +35,7 @@ class Map extends Controller
        return view('map', array('sites' => $mapsites, 'siteprac' => $siteprac));
     
     }
-    
-    public function deptfilter(Request $request, Practicum $practicum, Site $site) {
-        $sites = [];
-        $siteprac = [];
-        
-        $practicum = $practicum->newQuery();
-        $site = $site->newQuery();
-        
-         if ($request->department !== "null") {
-            $practicum->where('department', $request->input('department'))->get();
-        }
-        
-        if ($request->term !== "null") {
-            $practicum->where('term', $request->input('term'))->get();
-        }
-        
-        if ($request->has('city')) {
-            $subset =  $site->where('city', $request->input('city'))->get();
-           if(count($subset) > 1){
-            foreach ($subset as $set) {
-                foreach ($set as $s) {
-                    $practicum->where('site_id', $s['id']);
-                }
-            }
-           } else {
-           
-            foreach ($subset as $set) {
-            $practicum->where('site_id', $set->id);
-            }
-           
-           }
-        }
-         
-         $practicums = $practicum->get();
-       
-        foreach ($practicums as $practicum){
-            $site = Site::find($practicum['site_id']);
-            $sites[] = $site;
-        }
-        
-        foreach ($sites as $site) {
-             $practicums = Practicum::all()->where('site_id', $site->id);
-            $siteprac[] = array('site' => $site, 'practicums' => $practicums);
-        }
-    
 
-        return Response::json(['siteprac' => $siteprac, 'sites' => $sites]);
-    }
+   
             
 }
