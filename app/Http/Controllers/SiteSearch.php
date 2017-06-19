@@ -40,7 +40,7 @@ class SiteSearch extends Controller
          * Fitler practicum by city
          */
         
-        if ($filters->has('city')) {
+        if ($filters->city !== "null") {
             
             $subset =  $site->where('city', $filters->input('city'))->get();
            
@@ -65,7 +65,7 @@ class SiteSearch extends Controller
          * Fitler practicum by State
          */
          
-         if ($filters->has('state')) {
+         if ($filters->state !== "null") {
             $subset =  $site->where('state', $filters->input('state'))->get();
            
            if (count($subset) == 0){
@@ -89,7 +89,7 @@ class SiteSearch extends Controller
          * Fitler practicum by Country
          */
          
-         if ($filters->has('country')) {
+         if ($filters->country !== "null") {
             $subset =  $site->where('country', $filters->input('country'))->get();
                 
                 if (count($subset) == 0){

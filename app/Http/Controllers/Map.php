@@ -8,6 +8,7 @@ use App\Site;
 use App\Practicum;
 use Geocoder\Laravel\Facades\Geocoder;
 use Illuminate\Support\Facades\DB;
+use Select2Filters\CityFilter;
 
 class Map extends Controller
 {
@@ -21,8 +22,14 @@ class Map extends Controller
     
      public function index() {
         
+        /*
+         * Query all sites and corresponding practicums
+         *
+         * Build array to be returned to map.blade.php
+         */
+        
         $mapsites = Site::all();
-
+        
         $siteprac = [];
         
        foreach ($mapsites as $site) {
@@ -30,10 +37,37 @@ class Map extends Controller
             $siteprac[] = array('site' => $site, 'practicums' => $practicums);
         }
          
+        /*
+         * Get all cities (no dups) for filtering
+         */
+        
+        $cityquery = new Select2Filters\CityFilter; 
+        $cities = $cityquery->getCities();
+        
+        /*
+         * Get all states (no dups) for filtering
+         */
+        
+        $statequery = new Select2Filters\StateFilter; 
+        $states = $statequery->getStates();
+        
+        /*
+         * Get all countries (no dups) for filtering
+         */
+        
+        $countryquery = new Select2Filters\CountryFilter; 
+        $countries = $countryquery->getCountries();
+       
+       
        // $practicums = Practicum::paginate(15);
         
-       return view('map', array('sites' => $mapsites, 'siteprac' => $siteprac));
-    
+       return view('map', array(
+            'sites' => $mapsites,
+            'siteprac' => $siteprac,
+            'cities' => $cities,
+            'states' => $states,
+            'countries' => $countries
+            ));
     }
 
    

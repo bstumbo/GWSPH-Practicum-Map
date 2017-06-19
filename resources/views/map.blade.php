@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<link href="../public/css/select2.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../public/js/select2.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJsvr80YY4kZ4n1gcfpSNrz3dU7Ln1BEI"></script>
@@ -9,9 +12,15 @@
     display: inline;
   }
 </style>
-
-<div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div> 
-
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#city").select2();
+  $("#state").select2();
+  $("#country").select2();
+});
+</script>
+  
+<div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div>
   <div style="margin-left: 35%; margin-right: 35%;">
     <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
       <div class="form-group error">
@@ -46,23 +55,41 @@
         <div class="form-group error">
           <label for="inputTask" class="col-sm-3 control-label">City</label>
           <div class="col-sm-9">
-              <input type="text" id="city" name="city" value="">
+              <select id="city" name="city" value="">
+                 <option value="null">SELECT A CITY</option>
+                  @foreach($cities as $city)
+                    <option value="{{ $city }}">{{ $city }}</option>
+                  @endforeach
+              </select>
           </div>        
       </div>
         <div class="form-group error">
           <label for="inputTask" class="col-sm-3 control-label">State</label>
           <div class="col-sm-9">
-              <input type="text" id="state" name="state" value="">
+              <select id="state" name="state" value="">
+              <option value="null">SELECT A STATE</option>
+                @foreach($states as $state)
+                  <option value="{{ $state }}">{{ $state }}</option>
+                @endforeach
+              </select>
           </div>        
       </div>
         <div class="form-group error">
           <label for="inputTask" class="col-sm-3 control-label">Country</label>
           <div class="col-sm-9">
-              <input type="text" id="country" name="country" value="">
+              <select id="country" name="country" value="">
+              <option value="null">SELECT A COUNTRY</option>
+                @foreach($countries as $country)
+                  <option value="{{ $country }}">{{ $country }}</option>
+                @endforeach
+              </select>
           </div>        
       </div>
       <div class="col-sm-9">
         <input type="submit" value="Submit">
+      </div>
+        <div class="col-sm-9">
+        <input type="reset" value="Reset">
       </div>
     </form>
   </div>
@@ -119,13 +146,10 @@
       .openPopup();
     }
     
-</script>            
+</script>
   
-  
-
 
 <meta name="_token" content="{!! csrf_token() !!}" />  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{{asset('js/map.js')}}"></script>
 <script src="{{asset('js/ajax-crud.js')}}"></script>
