@@ -10,11 +10,13 @@ $(document).ready(function(){
     
     
     $('form.ajax').on('submit', function() {
+        delete this.sitejson;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         })
+        
         
 	var that = $(this),
             url = that.attr('action'),
@@ -27,6 +29,7 @@ $(document).ready(function(){
                     value = that.val();
                 data[name] = value;
             });
+        
 		
              $.ajax ({
                 
@@ -35,12 +38,13 @@ $(document).ready(function(){
                 data: data,
                 timeout: 7000,
                 success: function(response) {
+        
                     
                     var sites = ajaxmap(response.sites);
                     
                     var divHTML = '';
                     $.each(response.siteprac, function (i, item) {
-                        divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
+                        divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div class="org_name" style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city" style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div class="state"  style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div class="country" style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
                         
                         divHTML += '<div style="width:100%; display:none;" class="sub-row"><table style="width: 100%; border: 1px solid black;">';
                         $.each(item.practicums, function (h, items){
@@ -55,7 +59,7 @@ $(document).ready(function(){
                     
                     $('#practicum-list').html(divHTML);
                     $('#mapid').html(sites);
-		    
+                    
                     },
                 error: function (data) {
                 console.log('Error:', data);
@@ -63,7 +67,7 @@ $(document).ready(function(){
             });   
 
     return false;
-		
+	
     });
   
 });

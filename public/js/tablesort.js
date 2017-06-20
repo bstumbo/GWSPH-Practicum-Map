@@ -1,15 +1,24 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
   
   var $divs = $("div.site-row");
+  console.log($divs);
+  
   var ascendingorgname = false;
   var ascendingcity = false;
   var ascendingstate = false;
   var ascendingcountry = false;
   
+  $(document).ajaxSuccess(function(){
+    $divs = $("div.site-row");
+    console.log($divs);
+  });
+  
+  
   //Sort search results by Org Name alpha
   
   $('#orgheader').on('click', function() {
-         
+    console.log($divs);
+          
       if (ascendingorgname == false) {
        var alphaorg = $divs.sort(function(a, b) {
   

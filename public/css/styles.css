@@ -1,0 +1,15 @@
+.sort{
+    color: #004065;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.site-row {
+    background: yellow;
+    cursor: pointer;
+}
+
+.site-row:hover > div {
+    background: yellow;
+    cursor: pointer;
+}

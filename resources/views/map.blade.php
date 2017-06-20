@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 <link href="../public/css/select2.min.css" rel="stylesheet" />
+<link href="../public/css/styles.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../public/js/select2.min.js"></script>
   <script src="../public/js/tablesort.js"></script>
@@ -87,7 +88,7 @@ $(document).ready(function() {
           </div>        
       </div>
       <div class="col-sm-9">
-        <input type="submit" value="Submit">
+        <input id="submit" type="submit" value="Submit">
       </div>
         <div class="col-sm-9">
         <input type="reset" value="Reset">
@@ -98,10 +99,10 @@ $(document).ready(function() {
   <div id="practicum-ajax"></div>
    
   <div style="margin: 20px;">
-    <div id="orgheader" style="width: 25%; float: left;"><p align=center><strong>Organization Name</strong></p></div>
-    <div id="cityheader" style="width: 25%; float: left;"><p align=center><strong>City</strong></p></div>
-    <div id="stateheader" style="width: 25%; float: left;"><p align=center><strong>State</strong></p></div>
-    <div id="countryheader" style="width: 25%; float: left;"><p align=center><strong>Country</strong></p></div>
+    <div id="orgheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Organization Name</a></strong></p></div>
+    <div id="cityheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>City</a></strong></p></div>
+    <div id="stateheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>State</a></strong></p></div>
+    <div id="countryheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Country</a></strong></p></div>
   </div>
   <div id="practicum-list"> 
     @foreach($siteprac as $entry)
