@@ -125,6 +125,7 @@ $(document).ready(function() {
      </div> 
     @endforeach
   </div>
+  <div style="clear:both;">{{ $site->links() }}</div>
    
  
  <script type="text/javascript">

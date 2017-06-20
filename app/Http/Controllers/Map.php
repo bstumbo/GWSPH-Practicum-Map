@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Response;
 use App\Site;
 use App\Practicum;
@@ -29,17 +30,16 @@ class Map extends Controller
          */
         
         $mapsites = Site::all();
-        
+        $sites = Site::paginate(10);
         $siteprac = [];
         
-       foreach ($mapsites as $site) {
+       foreach ($sites as $site) {
             $practicums = Practicum::all()->where('site_id', $site->id);
             $siteprac[] = array('site' => $site, 'practicums' => $practicums);
         }
-         
-        /*
-         * Get all cities (no dups) for filtering
-         */
+        
+        //$sitescollection = collect($siteprac);
+        //$sitepracs = $sitescollection->forPage(1, 15);
         
         $cityquery = new Select2Filters\CityFilter; 
         $cities = $cityquery->getCities();
@@ -63,6 +63,7 @@ class Map extends Controller
         
        return view('map', array(
             'sites' => $mapsites,
+            'site' => $sites,
             'siteprac' => $siteprac,
             'cities' => $cities,
             'states' => $states,
