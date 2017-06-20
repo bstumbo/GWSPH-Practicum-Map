@@ -19,7 +19,7 @@
                 <tr id="{{$site->id}}">
                     <td style="width: 16%; text-align: center;">{{$site->org_name}}</td>
                     <td style="width: 16%; text-align: center;">{{$site->address}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->state}}</td>
+                    <td style="width: 16%; text-align: center;">{{$site->city}}</td>
                     <td style="width: 16%; text-align: center;">{{$site->state}}</td>
                     <td style="width: 16%; text-align: center;">{{$site->zip}}</td>
                     <td style="width: 16%; text-align: center;">{{$site->country}}</td>

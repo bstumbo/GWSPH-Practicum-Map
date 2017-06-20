@@ -2,6 +2,7 @@
 <link href="../public/css/select2.min.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../public/js/select2.min.js"></script>
+  <script src="../public/js/tablesort.js"></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJsvr80YY4kZ4n1gcfpSNrz3dU7Ln1BEI"></script>
@@ -97,18 +98,18 @@ $(document).ready(function() {
   <div id="practicum-ajax"></div>
    
   <div style="margin: 20px;">
-    <div style="width: 25%; float: left;"><p align=center><strong>Organization Name</strong></p></div>
-    <div style="width: 25%; float: left;"><p align=center><strong>City</strong></p></div>
-    <div style="width: 25%; float: left;"><p align=center><strong>State</strong></p></div>
-    <div style="width: 25%; float: left;"><p align=center><strong>Country</strong></p></div>
+    <div id="orgheader" style="width: 25%; float: left;"><p align=center><strong>Organization Name</strong></p></div>
+    <div id="cityheader" style="width: 25%; float: left;"><p align=center><strong>City</strong></p></div>
+    <div id="stateheader" style="width: 25%; float: left;"><p align=center><strong>State</strong></p></div>
+    <div id="countryheader" style="width: 25%; float: left;"><p align=center><strong>Country</strong></p></div>
   </div>
   <div id="practicum-list"> 
     @foreach($siteprac as $entry)
-     <div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;">
-       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->org_name}}</p></div>
-       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->city}}</p></div>
-       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->state}}</p></div>
-       <div style="width: 25%; float: left;"><p align=center>{{$entry['site']->country}}</p></div>
+     <div id="{{$entry['site']->id}}" class="site-row" style="clear:both; border: 1px solid black; margin: 20px;">
+       <div class="org_name" style="width: 25%; float: left;"><p align=center>{{$entry['site']->org_name}}</p></div>
+       <div class="city" style="width: 25%; float: left;"><p align=center>{{$entry['site']->city}}</p></div>
+       <div class="state" style="width: 25%; float: left;"><p align=center>{{$entry['site']->state}}</p></div>
+       <div class="country" style="width: 25%; float: left;"><p align=center>{{$entry['site']->country}}</p></div>
        <div style="width:100%; display:none;" class="sub-row" id="{{$entry['site']->id}}">
          <table style="width: 100%; border: 1px solid black;">
            @foreach($entry['practicums'] as $prac)
