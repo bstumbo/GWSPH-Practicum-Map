@@ -2,8 +2,9 @@
  function ajaxmap(json) {
  
  document.getElementById('mapid').innerHTML = "<div id='map' style='width: 100%; height: 400px; position: relative; outline: none;'></div> ";   
-
- var mymap = new L.Map('map', {center: new L.LatLng(37.0902, -95.7129), zoom: 4});
+   bounds = new L.LatLngBounds(new L.LatLng(-75, -180), new L.LatLng(75, 185));
+ var mymap = new L.Map('map', {center: new L.LatLng(37.0902, -95.7129), zoom: 4, maxBounds: bounds,
+  maxBoundsViscosity: .75});
  
  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',

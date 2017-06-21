@@ -1,10 +1,17 @@
 $(document).ready(function(){
     
+    /*
+     * Reload Page with reset button
+    */
+    
+    $("#reset").click(function(){
+        document.location.reload(true);
+    });
+    
     /* Show practicums under site
     */
 
     $("#practicum-list").on("click", ".site-row", function(){
-         console.log("clicked");
         $(".sub-row", this).toggle();
     });
     

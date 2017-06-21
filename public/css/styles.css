@@ -13,3 +13,12 @@
     background: yellow;
     cursor: pointer;
 }
+
+.form-wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.form-group {
+    display: inline-block;
+}

@@ -2,9 +2,11 @@
 <link href="../public/css/select2.min.css" rel="stylesheet" />
 <link href="../public/css/styles.css" rel="stylesheet" />
 <link href="../public/css/jquery.paginate.css" rel="stylesheet" />
+<link href="../public/css/bootstrap.css" rel="stylesheet" />
+<link href="../public/css/bootstrap-responsive.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../public/js/select2.min.js"></script>
-  <script src="../public/js/jquery.paginate.js"></script>
+<script src="../public/js/jquery.paginate.js"></script>
 <script src="../public/js/tablesort.js"></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
@@ -19,6 +21,8 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+  $("#department").select2();
+  $("#term").select2();
   $("#city").select2();
   $("#state").select2();
   $("#country").select2();
@@ -26,12 +30,12 @@ $(document).ready(function() {
 </script>
   
 <div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div>
-  <div style="margin-left: 35%; margin-right: 35%;">
+  <div class="form-wrapper">
     <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
       <div class="form-group error">
           <label for="inputTask" class="col-sm-3 control-label">Practicum</label>
           <div class="col-sm-9">
-              <select name="department">
+              <select id="department" name="department">
                <option selected="selected" value=null>Search by Department</option>
                 <option value="Epidemiology and Biostatistics">Epidemiology and Biostatistics</option>
                 <option value="Environmental and Occupational Health">Environmental and Occupational Health</option>
@@ -61,7 +65,7 @@ $(document).ready(function() {
           <label for="inputTask" class="col-sm-3 control-label">City</label>
           <div class="col-sm-9">
               <select id="city" name="city" value="">
-                 <option value="null">SELECT A CITY</option>
+                 <option value="null">Select a City</option>
                   @foreach($cities as $city)
                     <option value="{{ $city }}">{{ $city }}</option>
                   @endforeach
@@ -72,7 +76,7 @@ $(document).ready(function() {
           <label for="inputTask" class="col-sm-3 control-label">State</label>
           <div class="col-sm-9">
               <select id="state" name="state" value="">
-              <option value="null">SELECT A STATE</option>
+              <option value="null">Select a State</option>
                 @foreach($states as $state)
                   <option value="{{ $state }}">{{ $state }}</option>
                 @endforeach
@@ -83,18 +87,22 @@ $(document).ready(function() {
           <label for="inputTask" class="col-sm-3 control-label">Country</label>
           <div class="col-sm-9">
               <select id="country" name="country" value="">
-              <option value="null">SELECT A COUNTRY</option>
+              <option value="null">Select a Country</option>
                 @foreach($countries as $country)
                   <option value="{{ $country }}">{{ $country }}</option>
                 @endforeach
               </select>
           </div>        
       </div>
-      <div class="col-sm-9">
-        <input id="submit" type="submit" value="Submit">
-      </div>
+      <div class="form-group error">
         <div class="col-sm-9">
-        <input type="reset" value="Reset">
+          <input id="submit" type="submit" value="Submit">
+        </div>
+      </div>
+      <div class="form-group error">
+        <div class="col-sm-9">
+          <button id="reset">Reset</button>
+        </div>
       </div>
     </form>
   </div>
@@ -126,10 +134,17 @@ $(document).ready(function() {
 </script>   
   
  <script type="text/javascript">
-  var mymap = new L.Map('mapid', {center: new L.LatLng(37.0902, -95.7129), zoom: 4});
+  bounds = new L.LatLngBounds(new L.LatLng(-75, -180), new L.LatLng(75, 185));
+
+  var mymap = new L.Map('mapid', { center: new L.LatLng(37.0902, -95.7129), zoom: 3, maxBounds: bounds,
+  maxBoundsViscosity: .75});
+  
  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
+    minZoom: 3,
+    continuousWorld: false,
+    noWrap: true,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiYnN0dW1ibyIsImEiOiJjajFvejdiOGYwMWd4MndtYnZreXBjb3llIn0.ffvfjib5FpXMMwXW1ygyxg'
     }).addTo(mymap);
