@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
+use View;
 use Illuminate\Support\Collection;
 use Response;
 use App\Site;
@@ -30,7 +32,7 @@ class Map extends Controller
          */
         
         $mapsites = Site::all();
-        $sites = Site::paginate(10);
+        $sites = Site::all();
         $siteprac = [];
         
        foreach ($sites as $site) {
@@ -58,6 +60,10 @@ class Map extends Controller
         $countryquery = new Select2Filters\CountryFilter; 
         $countries = $countryquery->getCountries();
        
+       
+       /*if (Request::ajax()) {
+            return Response::json(View::make('siteprac', array('siteprac' => $siteprac, 'site' => $sites))->render());
+        }*/ 
        
        // $practicums = Practicum::paginate(15);
         

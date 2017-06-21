@@ -11,6 +11,7 @@ $(document).ready(function(){
     
     $('form.ajax').on('submit', function() {
         delete this.sitejson;
+        delete this.pagination;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
