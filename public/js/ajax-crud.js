@@ -4,9 +4,9 @@ $(document).ready(function(){
      * Reload Page with reset button
     */
     
-    $("#reset").click(function(){
+   /* $("#reset").click(function(){
         document.location.reload(true);
-    });
+    });*/
     
     /* Show practicums under site
     */
@@ -52,7 +52,7 @@ $(document).ready(function(){
                     
                     var divHTML = '';
                     $.each(response.siteprac, function (i, item) {
-                        divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div class="org_name" style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city" style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div class="state"  style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div class="country" style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
+                        divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div class="org_name site-div" style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city site-div" style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div class="state site-div"  style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div class="country site-div" style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
                         
                         divHTML += '<div style="width:100%; display:none;" class="sub-row"><table style="width: 100%; border: 1px solid black;">';
                         $.each(item.practicums, function (h, items){

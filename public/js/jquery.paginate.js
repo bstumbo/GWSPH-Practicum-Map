@@ -19,7 +19,7 @@
 			paginationTag:			'ul',
 			itemTag:			'li',
 			linkTag:			'a',
-			useHashLocation:		true,		//Determines whether or not the plugin makes use of hash locations
+			useHashLocation:		false,		//Determines whether or not the plugin makes use of hash locations
 			onPageClick:		function() {}	//Triggered when a pagination link is clicked
 			
 		}
