@@ -141,7 +141,7 @@ $(document).ready(function() {
                     <!-- end page title -->
                     <!-- page title tagline -->
                     <span class="white-text">The only school of public health in the nation’s capital and currently ranked #14 on U.S. News and World Report’s list of Best Public Health Graduate schools.</span>
-                    <p class="padding-two no-margin"><a href="http://publichealth.gwu.edu/academics/graduate-academic-programs" class="highlight-button-white-border btn-noshadow btn btn-medium btn-round button xs-margin-bottom-five">Learn More About Practicums</a></p>
+                    <p class="padding-two no-margin"><a href="http://publichealth.gwu.edu/academics/graduate-academic-programs" class="highlight-button-white-border btn-noshadow  btn-medium btn-round button xs-margin-bottom-five">Learn More About Practicums</a></p>
                     <!-- end title tagline -->
                 </div>
             </div>
@@ -224,14 +224,10 @@ $(document).ready(function() {
           </div>        
       </div>
       <div class="form-group error">
-        <div class="col-sm-9">
-          <input class="btn-primary" type="submit" value="Submit">
-        </div>
+          <input id="submit" class="" type="submit" value="Submit">
       </div>
       <div class="form-group error">
-        <div class="col-sm-9">
-          <button class="btn-primary" id="reset">Reset</button>
-        </div>
+          <input class="" id="reset" type="reset" value="Reset">
       </div>
     </form>
   </div>  
@@ -249,8 +245,7 @@ $(document).ready(function() {
   <div id="practicum-list"> 
     @include('siteprac');
   </div>
-
-<ul id="pagination-demo" class="pagination-sm"></ul>
+  
 
 <script type="text/javascript">
   

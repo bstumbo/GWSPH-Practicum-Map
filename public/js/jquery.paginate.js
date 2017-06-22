@@ -144,7 +144,7 @@
 		#Generates HTML for pagination (nav)
 	*/
         var generatePagination = function() {
-		var paginationEl = '<' + plugin.settings.containerTag + ' class="paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
+		var paginationEl = '<' + plugin.settings.containerTag + ' class="pagination-extra paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
 		paginationEl += '<' + plugin.settings.paginationTag + '>';
 		
 		paginationEl += '<' + plugin.settings.itemTag + '>';
