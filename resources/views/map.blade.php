@@ -243,7 +243,7 @@ $(document).ready(function() {
     <div id="countryheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Country</a></strong></p></div>
   </div>
   <div id="practicum-list"> 
-    @include('siteprac');
+    @include('siteprac')
   </div>
   
 

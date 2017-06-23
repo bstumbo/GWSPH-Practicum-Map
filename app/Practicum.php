@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Practicum extends BaseModel
 {
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'prac_id';
     protected $foreignKey = 'site_id';
     
     //Practicum id's pulled from Symplicity and are not auto-incrementing

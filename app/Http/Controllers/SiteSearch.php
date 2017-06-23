@@ -124,13 +124,16 @@ class SiteSearch extends Controller
          
         $finalsites = array_unique($sites);
         
+        
         foreach ($finalsites as $site) {
             $practicum = $practicums->where('site_id', $site->id);
             $siteprac[] = array('site' => $site, 'practicums' => $practicum);
         }
+        
+        $mapsites = array_values($finalsites); //Reindex for map json
     
 
-        return Response::json(['siteprac' => $siteprac, 'sites' => $finalsites]);
+        return Response::json(['siteprac' => $siteprac, 'sites' => $mapsites]);
     
         
     }

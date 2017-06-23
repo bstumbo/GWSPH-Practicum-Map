@@ -22,8 +22,8 @@ $(document).ready(function(){
     
     
     $('form.ajax').on('submit', function() {
-        delete this.sitejson;
-        delete this.pagination;
+       // delete this.sitejson;
+       // delete this.pagination;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -49,12 +49,13 @@ $(document).ready(function(){
                 url: url,
                 type: type,
                 data: data,
-                timeout: 7000,
+                timeout: 100000,
                 success: function(response) {
         
                     
                     var sites = ajaxmap(response.sites);
                     
+                    console.log("Made it back");
                     var divHTML = '';
                     $.each(response.siteprac, function (i, item) {
                         divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div class="org_name site-div" style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city site-div" style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div class="state site-div"  style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div class="country site-div" style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
