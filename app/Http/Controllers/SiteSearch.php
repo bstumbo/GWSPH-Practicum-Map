@@ -15,6 +15,7 @@ class SiteSearch extends Controller
     {
         $sites = [];
         $siteprac = [];
+        $practicumarray = [];
         
         $practicum = $practicum->newQuery();
         $site = $site->newQuery();
@@ -45,21 +46,11 @@ class SiteSearch extends Controller
             
             $subset =  $site->where('city', $filters->input('city'))->get();
            
-           if (count($subset) == 0){
-                    $practicum->where('site_id', '0');
-            } elseif(count($subset) > 1){
-                foreach ($subset as $set) {
-                    foreach ($set as $s) {
-                        $practicum->where('site_id', $s['id']);
-                    }
-                }
-           } else {
-           
             foreach ($subset as $set) {
-            $practicum->where('site_id', $set->id);
-            }
-           
-           }
+                    $practicumarray[] = $set->id;
+                }
+            
+            $practicum->whereIn('site_id', $practicumarray);
         }
         
          /*
@@ -69,21 +60,11 @@ class SiteSearch extends Controller
          if ($filters->state !== "null") {
             $subset =  $site->where('state', $filters->input('state'))->get();
            
-           if (count($subset) == 0){
-                    $practicum->where('site_id', '0');
-            } elseif(count($subset) > 1){
-                foreach ($subset as $set) {
-                    foreach ($set as $s) {
-                        $practicum->where('site_id', $s['id']);
-                    }
-                }
-           } else {
-           
             foreach ($subset as $set) {
-            $practicum->where('site_id', $set->id);
-            }
-           
-           }
+                         $practicumarray[] = $set->id;
+                    }
+            
+            $practicum->whereIn('site_id', $practicumarray);
         }
         
          /*
@@ -92,24 +73,17 @@ class SiteSearch extends Controller
          
          if ($filters->country !== "null") {
             $subset =  $site->where('country', $filters->input('country'))->get();
+              
+                foreach ($subset as $set) {
+                         $practicumarray[] = $set->id;
+                    }
+            
+                $practicum->whereIn('site_id', $practicumarray);
                 
-                if (count($subset) == 0){
-                    $practicum->where('site_id', '0');
-                } elseif (count($subset) > 1){
-                 foreach ($subset as $set) {
-                     foreach ($set as $s) {
-                         $practicum->where('site_id', $s['id']);
-                     }
-                 }
-                } else {
-                 foreach ($subset as $set) {
-                 $practicum->where('site_id', $set->id);
-                 }
-                }
         }
         
-    
         $practicums = $practicum->get();
+        
           
 
         foreach ($practicums as $practicum){
