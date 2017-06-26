@@ -23,7 +23,7 @@
 <p>There are {{$num}} issues with your upload.</p>
 
     <table>
-    @foreach ($catches as $catch)
+    @foreach ($catches as $key => $catch)
         <tr>
         <td>{{$i++}}</td>
         <td>
@@ -39,7 +39,7 @@
 @if (count($dud) > 0)
 <h1>Duds!!!!!!!</h1>
      @php
-    $nums = count($catches);
+    $nums = count($dud);
     $i = 1;
     @endphp
 <p>There are {{$nums}} Duds in your upload.</p>
