@@ -13,19 +13,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJsvr80YY4kZ4n1gcfpSNrz3dU7Ln1BEI"></script>
   
 <!-- Drupal Styles and JS -->
-
-
-
-<link type="text/css" rel="stylesheet" href="http://publichealth.gwu.edu/sites/default/files/css/css_Vv_jD3sn-2VpG5VjIb_hpOWzqRR9O-p6PjBDqioePrk.css" media="all" />
-<link type="text/css" rel="stylesheet" href="http://publichealth.gwu.edu/sites/default/files/css/css_usSpPQDqrNuPYeAerggiImqHIT5SkDRLc6ao6Hui_cU.css" media="all" />
-<link type="text/css" rel="stylesheet" href="http://publichealth.gwu.edu/sites/default/files/css/css_JCcqfxTx0d6y0MIbfwp2dDfzjbuE9R2UkOvi0oiqJ_Q.css" media="all" />
-<link type="text/css" rel="stylesheet" href="http://publichealth.gwu.edu/sites/default/files/css/css_SSv1IbS4AkVJt1CF9-Rlbs4dTi0VKu0EkB7iQBlEcCM.css" media="print" />
-<link type="text/css" rel="stylesheet" href="http://publichealth.gwu.edu/sites/default/files/css/css_s6WJX3p_QcUa0EgydMP-HxrmWX22D_dJfSLmOo6Xjmw.css" media="all" />
-
-<!--<script src="http://publichealth.gwu.edu/sites/default/files/js/js_RU5Gn1hNhIAPv1pKQEFmDv-Q-KtqelK6M8P5clytA3A.js"></script>
-<script src="http://publichealth.gwu.edu/sites/default/files/js/js_jUGMAWXyVvwzUHrnLYAOC20Z5Zo2RFUW2xbLBM2kqrc.js"></script>
-<script src="http://publichealth.gwu.edu/sites/default/files/js/js_jeGGQBrUC0oniGvPBVs8IsCRdQYwSFPYog77TE1ySbE.js"></script>
-<script src="http://publichealth.gwu.edu/sites/default/files/js/js_o0NmOA6FrOQamIKXP181IN2QejpF72PVBGsbUlh8LeY.js"></script> -->
+<style>
+@import url("http://publichealth.gwu.edu/sites/all/themes/gwu/css/global/gwu.global.css?os685u");
+</style>
+<link href="../public/css/gwu-style.css" rel="stylesheet" />
 
 <!-- End of Drupal Styles -->
 
@@ -54,7 +45,7 @@ $(document).ready(function() {
       <div class="main-nav">
       	<!--<a href="/" class="mobile-home">Home</a>-->
           <div class="l-region l-region--header">
-    <nav id="block-menu-block-4" role="navigation" class="block block--menu-block block--menu-block-4">
+<nav id="block-menu-block-4" role="navigation" class="block block--menu-block block--menu-block-4">
       
   <div class="menu-block-wrapper menu-block-4 menu-name-main-menu parent-mlid-0 menu-level-1">
   <ul class="menu"><li  class="first leaf active menu-mlid-221 home"><a href="http://publichealth.gwu.edu" class="active">Home</a></li>
@@ -125,7 +116,7 @@ $(document).ready(function() {
   </div>
       </div><!-- /main-nav -->
     </div><!-- /header-wrap -->
-  </header>
+  </header> 
 
 <!-- Drupal Menu End -->
 
@@ -148,7 +139,6 @@ $(document).ready(function() {
         </div>
     </section>
     <!-- end head section -->
-    
     <!--What is Department-->
     <section role="region" aria-labelledby="whatis" class="padding-one bg-white">
         <div class="container">
@@ -234,7 +224,7 @@ $(document).ready(function() {
   
   <div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div>
   
-  <div id="practicum-ajax"></div>
+  <div id="#"></div>
    
   <div style="margin: 20px;">
     <div id="orgheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Organization Name</a></strong></p></div>

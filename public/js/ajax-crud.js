@@ -1,12 +1,13 @@
 $(document).ready(function(){
     
+    
     /*
      * Reload Page with reset button
     */
     
-   /* $("#reset").click(function(){
+    $("#reset").click(function(){
         document.location.reload(true);
-    });*/
+    });
     
     /* Show practicums under site
     */
