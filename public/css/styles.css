@@ -81,3 +81,8 @@ select:focus{
     border:none;
     box-shadow:none
  }
+ 
+.bold {
+    font-weight: 600;
+    
+}

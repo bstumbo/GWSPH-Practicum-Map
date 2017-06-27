@@ -271,9 +271,8 @@ $(document).ready(function() {
     for (var i = 0; i < sitejson.length; i++) {
       
       var orgname = sitejson[i].org_name;
-      var infostring = orgname.concat(sitejson[i].city, sitejson[i].state);
       var marker = L.marker([sitejson[i].latitude, sitejson[i].longitude]).addTo(mymap)
-      .bindPopup(infostring)
+      .bindPopup("<p><span class=\"bold\"><a target=\"_blank\" href=\"http://www.google.com/search?q=" + orgname + "\">" + orgname + "</a></span><br>" + sitejson[i].city + ", " + sitejson[i].state +  "</p>")
       .openPopup();
     }
     
