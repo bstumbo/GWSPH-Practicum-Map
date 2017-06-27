@@ -15,6 +15,7 @@ class JSONUploader extends Controller
     var $practicum;
     
     public function __construct() {
+        //$this->middleware('auth');
         $this->site = Site::all(array('org_name', 'address','city', 'state', 'zip', 'country'));
         $this->practicum = Practicum::all(array('title'));
     }

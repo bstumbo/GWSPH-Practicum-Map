@@ -25,3 +25,6 @@ Route::get('/practicums/{practicum_id?}', 'Admin@readPrac');
 Route::post('/practicums', 'Admin@createPrac');
 Route::put('/practicums/{practicum_id?}', 'Admin@editPrac');
 Route::delete('/practicums/{practicum_id?}', 'Admin@deletePrac');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
