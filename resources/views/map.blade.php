@@ -239,12 +239,14 @@ $(document).ready(function() {
 
 <script type="text/javascript">
   
-  $('#practicum-list').paginate({ 'perPage': 25 });
+  $('#practicum-list').paginate({ 'perPage': 50 });
+
   
    $(document).ajaxSuccess(function(){
        $('#practicum-list').data('paginate').kill();
-       $('#practicum-list').paginate({ 'perPage': 25 });
-      });
+       $('#practicum-list').paginate({ 'perPage': 50 });
+	
+      })
 
 
 </script>   

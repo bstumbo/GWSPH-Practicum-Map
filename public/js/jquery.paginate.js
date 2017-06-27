@@ -26,7 +26,8 @@
 			
         var plugin = this;
         var plugin_index = $('.paginate').length;
-
+      
+        
         plugin.settings = {}
 
         var $element = $(element),
