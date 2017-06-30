@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Site;
 use App\Practicum;
+use App\Program;
 use Geocoder\Laravel\Facades\Geocoder;
 use Validator;
 
@@ -62,7 +63,7 @@ class JSONUploader extends Controller
     }
     
    protected function siteUSCommit($newSite, $newPracticum, $data) {
-    
+            
             $newSite->id = $data['id'];
             $newSite->org_name = $data['org_name'];
             $newSite->address = $data['address'];
@@ -80,6 +81,15 @@ class JSONUploader extends Controller
             $newPracticum->title = $data['title'];
             $newPracticum->term = $data['term'];
             $newPracticum->department = $data['department'];
+            $newPracticum->major = $data['major'];
+        
+            /*
+             * Lookup program url with major as foreign key
+             */
+            $urlquery = new Programs\ProgramSearch;
+            $test = $data['major'];
+            $url = $urlquery->getProgramUrl($test);
+            $newPracticum->program_link = $url;
             //$newPracticum->description = $data['Practicum']['description'];
             $newPracticum->site_id = $data['id'];
             $newPracticum->save();
@@ -87,7 +97,7 @@ class JSONUploader extends Controller
    }
    
    protected function siteOtherCommit($newSite, $newPracticum, $data) {
-    
+                
             $newSite->id = $data['id'];
             $newSite->org_name = $data['org_name'];
             $newSite->address = $data['address'];
@@ -105,6 +115,15 @@ class JSONUploader extends Controller
             $newPracticum->title = $data['title'];
             $newPracticum->term = $data['term'];
             $newPracticum->department = $data['department'];
+            $newPracticum->major = $data['major'];
+            
+            /*
+             * Lookup program url with major as foreign key
+             */
+            $urlquery = new Programs\ProgramSearch;
+            $test = $data['major'];
+            $url = $urlquery->getProgramUrl($test);
+            $newPracticum->program_link = $url;
             //$newPracticum->description = $data['Practicum']['description'];
             $newPracticum->site_id = $data['id'];
             $newPracticum->save();
@@ -129,7 +148,8 @@ class JSONUploader extends Controller
         
         $dud = [];
         $catch = [];
-    
+        $urls = [];
+        
        foreach ($entry as $data) {
         
         /*
@@ -160,7 +180,7 @@ class JSONUploader extends Controller
         
         if ($validateOther == "true") {
             try{
-            $this->siteOtherCommit($newSite, $newPracticum, $data);    
+            $this->siteOtherCommit($newSite, $newPracticum, $data);
             } catch (\Exception $e) {
                 $catch[] = $data;
             }
@@ -175,7 +195,7 @@ class JSONUploader extends Controller
        
             if ($validateUS == "true") {
                 try{
-                $this->siteUSCommit($newSite, $newPracticum, $data);    
+                $this->siteUSCommit($newSite, $newPracticum, $data);
                 } catch (\Exception $e) {
                     $catch[] = $data;
                 }
@@ -184,11 +204,12 @@ class JSONUploader extends Controller
             }
         
         }
+        
        
        }
         
          
-         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud, 'catches' => $catch));
+         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud, 'catches' => $catch, 'urls' => $urls));
          
     }
 }
