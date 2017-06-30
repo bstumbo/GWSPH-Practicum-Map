@@ -57,9 +57,4 @@
     </table>
         
 @endif
-
-    @foreach($urls as $url)
-        {{$url}}<br>
-    @endforeach
-
 @endsection

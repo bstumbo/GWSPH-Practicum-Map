@@ -11,6 +11,9 @@
                 <th>Description</th>
                 <th>Department</th>
                 <th>Site</th>
+                <th>Major</th>
+                <th>Program Url</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="practicums">                    
@@ -21,9 +24,11 @@
                     <td style="width: 16%; text-align: center;">{{$practicum->description}}</td>
                     <td style="width: 16%; text-align: center;">{{$practicum->department}}</td>
                     <td style="width: 16%; text-align: center;">{{$practicum->site_id}}</td>
+                    <td style="width: 16%; text-align: center;">{{$practicum->major}}</td>
+                    <td style="width: 16%; text-align: center;">{{$practicum->program_link}}</td>
                     <td>
-                       <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$practicum->id}}">Edit</button>
-                       <button class="btn btn-danger btn-xs btn-delete delete-prac" value="{{$practicum->id}}">Delete</button>
+                       <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$practicum->prac_id}}">Edit</button>
+                       <button class="btn btn-danger btn-xs btn-delete delete-prac" value="{{$practicum->prac_id}}">Delete</button>
                    </td>
                 </tr>
             @endforeach
@@ -91,6 +96,18 @@
                         <label for="inputTask" class="col-sm-3 control-label">Site</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control has-error" id="site_id" name="site_id" value="">
+                        </div>
+                    </div>
+                    <div class="form-group error">
+                        <label for="inputTask" class="col-sm-3 control-label">Major</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control has-error" id="major" name="major" value="">
+                        </div>
+                    </div>
+                    <div class="form-group error">
+                        <label for="inputTask" class="col-sm-3 control-label">Program Link</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control has-error" id="program_link" name="program_link" value="">
                         </div>
                     </div>
                     

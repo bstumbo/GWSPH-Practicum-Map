@@ -9,12 +9,14 @@ $(document).ready(function(){
         $.get(url + '/' + prac_id, function (data) {
             //success data
             console.log(data);
-            $('#prac_id').val(data.id);
+            $('#prac_id').val(data.prac_id);
             $('#title').val(data.title);
             $('#term').val(data.term);
             $('#description').val(data.description);
             $('#department').val(data.department);
             $('#site_id').val(data.site_id);
+            $('#major').val(data.major);
+            $('#program_link').val(data.program_link);
             $('#btn-save').val("update");
 
             $('#myModal').modal('show');
@@ -70,6 +72,8 @@ $(document).ready(function(){
             description: $('#description').val(),
             department: $('#department').val(),
             site_id: $('#site_id').val(),
+            major: $('#major').val(),
+            program_link: $('#program_link').val(),
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

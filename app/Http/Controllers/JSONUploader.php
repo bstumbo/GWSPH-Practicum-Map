@@ -148,7 +148,6 @@ class JSONUploader extends Controller
         
         $dud = [];
         $catch = [];
-        $urls = [];
         
        foreach ($entry as $data) {
         
@@ -209,7 +208,7 @@ class JSONUploader extends Controller
        }
         
          
-         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud, 'catches' => $catch, 'urls' => $urls));
+         return view('uploaded', array('newSite' => $newSite, 'newPracticum' => $newPracticum, 'dud' => $dud, 'catches' => $catch));
          
     }
 }

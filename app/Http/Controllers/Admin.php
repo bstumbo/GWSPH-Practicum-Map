@@ -124,6 +124,8 @@ class Admin extends Controller
         $practicum->description = $request->description;
         $practicum->department = $request->department;
         $practicum->site_id = $request->site_id;
+        $practicum->major = $request->major;
+        $practicum->program_link = $request->program_link;
         
     /* Save updated $practicum to database */
         
