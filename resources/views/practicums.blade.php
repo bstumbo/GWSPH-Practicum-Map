@@ -1,8 +1,55 @@
 @extends('layouts.admin')
 
 @section('content')
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#program_filter").select2();
+      $("#department_filter").select2();
+    });
+</script>  
 <h1>Practicums</h1>
      <button id="btn-add" name="btn-add" class="btn btn-primary btn-xs">Add New Practicum</button>
+    <div class="form-wrapper">
+    <form method="POST" action="/practicummap/public/practicums" id="practicumsearch" name="practicumsearch" novalidate="">	
+      <div class="form-group error">
+          <div class="col-sm-9">
+            <label>Search Practicum Plan Title</label>
+            <input id="practicum_plan_filter" name="practicum_plan_filter" type="text"/>
+          </div>        
+      </div>
+         <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="program_filter" name="program_filter">
+                <option value="null">Search by Program</option>
+                @foreach($programs as $program)
+                  <option value="{{ $program }}">{{ $program }}</option>
+                @endforeach
+              </select>
+          </div>
+	  </div>	
+        <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="department_filter" name="department_filter">
+               <option selected="selected" value=null>Search by Department</option>
+                <option value="Epidemiology and Biostatistics">Epidemiology and Biostatistics</option>
+                <option value="Environmental and Occupational Health">Environmental and Occupational Health</option>
+                <option value="Exercise and Nutrition Sciences">Exercise and Nutrition Sciences</option>
+                  <option value="Global Health">Global Health</option>
+                  <option value="Health Policy and Management">Health Policy and Management</option>
+                <option value="Online MPH @ GW">Online MPH @ GW</option>
+                  <option value="Prevention and Community Health">Prevention and Community Health</option>
+              </select>
+          </div>        
+      </div>
+      <div class="form-group error">
+          <input id="submit" class="" type="submit" value="Submit">
+      </div>
+      <div class="form-group error">
+          <input class="" id="reset" type="reset" value="Reset">
+      </div>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </form>
+  </div>  
     <table class="table">
         <thead>
             <tr>
@@ -18,7 +65,7 @@
         </thead>
         <tbody id="practicums">                    
             @foreach ($practicums as $practicum)
-                <tr id="{{$practicum->id}}">
+                <tr id="{{$practicum->prac_id}}">
                     <td style="width: 16%; text-align: center;">{{$practicum->title}}</td>
                     <td style="width: 16%; text-align: center;">{{$practicum->term}}</td>
                     <td style="width: 16%; text-align: center;">{{$practicum->description}}</td>
@@ -122,7 +169,7 @@
 </div>
     
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{{asset('js/prac-admin.js')}}"></script>
 @endsection

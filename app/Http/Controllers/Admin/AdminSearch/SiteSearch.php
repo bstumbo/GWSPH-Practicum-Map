@@ -37,7 +37,6 @@ class SiteSearch extends Controller
         $countryquery = new CountryFilter; 
         $countries = $countryquery->getCountries();
         
-        $sites = [];
         
         $site = $site->newQuery();
         

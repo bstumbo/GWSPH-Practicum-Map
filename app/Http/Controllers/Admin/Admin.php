@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Select2Filters\CityFilter;
 use App\Http\Controllers\Select2Filters\StateFilter;
 use App\Http\Controllers\Select2Filters\CountryFilter;
+use App\Http\Controllers\Select2Filters\ProgramFilter;
+use App\Http\Controllers\Programs\ProgramSearch;
 use Response;
 use App\Site;
 use App\Practicum;
@@ -51,12 +53,19 @@ class Admin extends Controller
     }
     
     function practicumsAll() {
+            
     
-    /* Fetch all practicums */
-    
+        /* Fetch all practicums */
+        
         $practicums = Practicum::paginate(20);
         
-        return view('practicums', array('practicums' => $practicums));
+        /*Practicum Filters */
+        
+        $programquery = new ProgramFilter; 
+        $programs = $programquery->getPrograms();
+        
+        
+        return view('practicums', array('practicums' => $practicums, 'programs' => $programs));
     }
     
     
@@ -143,7 +152,7 @@ class Admin extends Controller
         
     /* Set values of $practicum to values of $request */
         
-        $practicum->prac_id = $request->id;
+        $practicum->prac_id = $request->prac_id;
         $practicum->title = $request->title;
         $practicum->term = $request->term;
         $practicum->description = $request->description;

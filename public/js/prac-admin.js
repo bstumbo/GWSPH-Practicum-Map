@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-      var url = "/practicummap/public/practicums";
+      var url = "/practicummap/public/practicums-edit";
     
     //display modal form for task editing
     $('.open-modal').click(function(){
@@ -99,7 +99,7 @@ $(document).ready(function(){
             success: function (data) {
                 console.log(data);
 
-                var prac = '<tr id="#' + data.prac_id + '"><td style="width: 16%; text-align: center;">' + data.title + '</td><td style="width: 16%; text-align: center;">' + data.term + '</td><td style="width: 16%; text-align: center;">' + data.description + '</td><td style="width: 16%; text-align: center;">' + data.department + '</td><td style="width: 16%; text-align: center;">' + data.site_id + '</td>';
+                var prac = '<tr id="#' + data.prac_id + '"><td style="width: 16%; text-align: center;">' + data.title + '</td><td style="width: 16%; text-align: center;">' + data.term + '</td><td style="width: 16%; text-align: center;">' + data.description + '</td><td style="width: 16%; text-align: center;">' + data.department + '</td><td style="width: 16%; text-align: center;">' + data.site_id + '</td><td style="width: 16%; text-align: center;">' + data.major + '</td><td style="width: 16%; text-align: center;">' + data.program_url + '</td>';
                 prac += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.prac_id + '">Edit</button>';
                 prac += '<button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.prac_id + '">Delete</button></td></tr>';
 

@@ -22,10 +22,11 @@ Route::post('/sites-edit', 'Admin\Admin@createSite');
 Route::put('/sites-edit/{site_id?}', 'Admin\Admin@editSite');
 Route::delete('/sites-edit/{site_id?}', 'Admin\Admin@deleteSite');
 Route::get('/practicums', 'Admin\Admin@practicumsAll');
-Route::get('/practicums/{practicum_id?}', 'Admin\Admin@readPrac');
-Route::post('/practicums', 'Admin\Admin@createPrac');
-Route::put('/practicums/{practicum_id?}', 'Admin\Admin@editPrac');
-Route::delete('/practicums/{practicum_id?}', 'Admin\Admin@deletePrac');
+Route::post('/practicums', 'Admin\AdminSearch\PracticumSearch@apply');
+Route::get('/practicums-edit/{practicum_id?}', 'Admin\Admin@readPrac');
+Route::post('/practicums-edit', 'Admin\Admin@createPrac');
+Route::put('/practicums-edit/{practicum_id?}', 'Admin\Admin@editPrac');
+Route::delete('/practicums-edit/{practicum_id?}', 'Admin\Admin@deletePrac');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
