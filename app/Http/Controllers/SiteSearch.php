@@ -21,6 +21,15 @@ class SiteSearch extends Controller
         $site = $site->newQuery();
         
         
+        
+        /*
+         * Filter practicums by program 
+         */
+        
+         if ($filters->program !== "null") {
+            $practicum->where('major', $filters->input('program'))->get();
+        }
+        
         /*
          * Filter practicums by department 
          */
@@ -33,15 +42,20 @@ class SiteSearch extends Controller
          * Filterm practicums by term
          */
         
+        /*
+        
         if ($filters->term !== "null") {
             $practicum->where('term', $filters->input('term'))->get();
         }
+        
+        */
         
          
         /*
          * Fitler practicum by city
          */
         
+    
         if ($filters->city !== "null") {
             
             $subset =  $site->where('city', $filters->input('city'))->get();
@@ -52,6 +66,8 @@ class SiteSearch extends Controller
             
             $practicum->whereIn('site_id', $practicumarray);
         }
+        
+
         
          /*
          * Fitler practicum by State

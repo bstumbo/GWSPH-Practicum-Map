@@ -43,6 +43,13 @@ class Map extends Controller
         //$sitescollection = collect($siteprac);
         //$sitepracs = $sitescollection->forPage(1, 15);
         
+        $programquery = new Select2Filters\ProgramFilter; 
+        $programs = $programquery->getPrograms();
+        
+         /*
+         * Get all cities (no dups) for filtering
+         */
+        
         $cityquery = new Select2Filters\CityFilter; 
         $cities = $cityquery->getCities();
         
@@ -71,6 +78,7 @@ class Map extends Controller
             'sites' => $mapsites,
             'site' => $sites,
             'siteprac' => $siteprac,
+            'programs' => $programs,
             'cities' => $cities,
             'states' => $states,
             'countries' => $countries

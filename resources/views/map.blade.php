@@ -31,8 +31,8 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+  $("#program").select2();
   $("#department").select2();
-  $("#term").select2();
   $("#city").select2();
   $("#state").select2();
   $("#country").select2();
@@ -156,6 +156,16 @@ $(document).ready(function() {
   
 <div class="form-wrapper">
     <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
+	  <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="program" name="program">
+                <option value="null">Search by Program</option>
+                @foreach($programs as $program)
+                  <option value="{{ $program }}">{{ $program }}</option>
+                @endforeach
+              </select>
+          </div>
+	  </div>	
       <div class="form-group error">
           <div class="col-sm-9">
               <select id="department" name="department">
@@ -170,7 +180,8 @@ $(document).ready(function() {
               </select>
           </div>        
       </div>
-        <div class="form-group error">
+        <!-- Removed Work Term Search
+		<div class="form-group error">
           <div class="col-sm-9">
               <select id="term" name="term">
                 <option selected="selected" value=null>Search by Work Term</option>
@@ -182,7 +193,7 @@ $(document).ready(function() {
                 <option value="Fall 2017">Fall 2017</option>
               </select>
           </div>        
-      </div>
+      </div> -->
         <div class="form-group error">
           <div class="col-sm-9">
               <select id="city" name="city" value="">
