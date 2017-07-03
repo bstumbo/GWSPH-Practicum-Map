@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    var url = "/practicummap/public/sites";
+    var url = "/practicummap/public/sites-edit";
     
     //display modal form for task editing
     $('.open-modal').click(function(){

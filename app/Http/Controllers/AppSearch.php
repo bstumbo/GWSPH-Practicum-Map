@@ -9,7 +9,7 @@ use App\Site;
 use App\Practicum;
 
 
-class SiteSearch extends Controller
+class AppSearch extends Controller
 {
     public static function apply(Request $filters, Practicum $practicum, Site $site)
     {

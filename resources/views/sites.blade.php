@@ -1,8 +1,76 @@
 @extends('layouts.admin')
 
 @section('content')
+  <script type="text/javascript">
+            $(document).ready(function() {
+              $("#city_filter").select2();
+              $("#state_filter").select2();
+              $("#country_filter").select2();
+            });
+        </script>   
 <h1>Sites</h1>
     <button id="btn-add" name="btn-add" class="btn btn-primary btn-xs">Add New Site</button>
+    <div class="form-wrapper">
+    <form method="POST" action="/practicummap/public/sites" id="sitessearch" name="sitessearch" novalidate="">	
+      <div class="form-group error">
+          <div class="col-sm-9">
+            <label>Search Organizations</label>
+            <input id="org_name_filter" name="org_name_filter" type="text"/>
+          </div>        
+      </div>
+       <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="city_filter" name="city_filter" value="">
+                 <option value="null">Select a City</option>
+                  @foreach($cities as $city)
+                    <option value="{{ $city }}">{{ $city }}</option>
+                  @endforeach
+              </select>
+          </div>        
+      </div>
+        <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="state_filter" name="state_filter" value="">
+              <option value="null">Select a State</option>
+                @foreach($states as $state)
+                  <option value="{{ $state }}">{{ $state }}</option>
+                @endforeach
+              </select>
+          </div>        
+      </div>
+        <div class="form-group error">
+          <div class="col-sm-9">
+              <select id="country_filter" name="country_filter" value="">
+              <option value="null">Select a Country</option>
+                @foreach($countries as $country)
+                  <option value="{{ $country }}">{{ $country }}</option>
+                @endforeach
+              </select>
+          </div>        
+      </div>
+        <!-- Removed Work Term Search
+		<div class="form-group error">
+          <div class="col-sm-9">
+              <select id="term" name="term">
+                <option selected="selected" value=null>Search by Work Term</option>
+                <option value="Spring 2016">Spring 2016</option>
+                <option value="Summer 2016">Summer 2016</option>
+                <option value="Fall 2016">Fall 2016</option>
+                <option value="Spring 2017">Spring 2017</option>
+                <option value="Summer 2017">Summer 2017</option>
+                <option value="Fall 2017">Fall 2017</option>
+              </select>
+          </div>        
+      </div> -->
+      <div class="form-group error">
+          <input id="submit" class="" type="submit" value="Submit">
+      </div>
+      <div class="form-group error">
+          <input class="" id="reset" type="reset" value="Reset">
+      </div>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </form>
+  </div>  
     <table class="table">
         <thead>
             <tr>
@@ -12,6 +80,7 @@
                 <th>State</th>
                 <th>Zip Code</th>
                 <th>Country</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="sites">                    
@@ -98,7 +167,7 @@
     </div>
 </div>
         
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{{asset('js/sites-admin.js')}}"></script>
 @endsection

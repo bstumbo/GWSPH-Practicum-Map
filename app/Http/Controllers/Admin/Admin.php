@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
  
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Select2Filters\CityFilter;
+use App\Http\Controllers\Select2Filters\StateFilter;
+use App\Http\Controllers\Select2Filters\CountryFilter;
 use Response;
 use App\Site;
 use App\Practicum;
@@ -21,8 +25,29 @@ class Admin extends Controller
     /* Fetch all sites */
     
         $sites = Site::paginate(20);
+        
+         /*
+         * Get all cities (no dups) for filtering
+         */
+        
+        $cityquery = new CityFilter; 
+        $cities = $cityquery->getCities();
+        
+        /*
+         * Get all states (no dups) for filtering
+         */
+        
+        $statequery = new StateFilter; 
+        $states = $statequery->getStates();
+        
+        /*
+         * Get all countries (no dups) for filtering
+         */
+        
+        $countryquery = new CountryFilter; 
+        $countries = $countryquery->getCountries();
     
-       return view('sites', array('sites' => $sites));
+       return view('sites', array('sites' => $sites, 'cities' => $cities, 'states' => $states, 'countries' => $countries));
     }
     
     function practicumsAll() {
