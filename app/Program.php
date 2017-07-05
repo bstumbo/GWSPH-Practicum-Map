@@ -9,6 +9,6 @@ class Program extends BaseModel
     
     
     protected $table = 'programs';
-    protected $fillable = array('id','department', 'program', 'program_url' );
+    protected $fillable = array('id','department', 'program', 'program_pretty', 'program_url' );
 
 }

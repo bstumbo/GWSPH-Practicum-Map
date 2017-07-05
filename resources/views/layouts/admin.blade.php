@@ -113,12 +113,21 @@
   </div>
       </div><!-- /main-nav -->
     </div><!-- /header-wrap -->
-        <div style="width: 250px; margin-left: auto; margin-right:auto;">
-             <h1>Admin Section</h1>
-                <button id="btn-import" name="btn-import" class="btn btn-primary btn-xs">Import Data</button>
-        </div>
-    
         <div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand">Practicum Map Admin</a>
+			  </div>
+			  <ul class="nav navbar-nav">
+				<li><a href="/practicummap/public/sites">Sites</a></li>
+				<li><a href="/practicummap/public/practicums">Practicums</a></li>
+				<li><a href="/practicummap/public/programs">Programs</a></li>
+				<li><a href="/practicummap/public/import">Import Sites/Practicum</a></li>
+				<li><a href="/practicummap/public">Live Map</a></li>
+			  </ul>
+			</div>
+		  </nav>
             @yield('content')
         </div>
     <!-- Modal (Pop up when detail button clicked) -->

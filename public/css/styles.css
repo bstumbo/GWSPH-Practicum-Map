@@ -95,3 +95,8 @@ select:focus{
     font-weight: 600;
     
 }
+
+.navbar .nav > li > a {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}

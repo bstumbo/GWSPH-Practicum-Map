@@ -12,6 +12,7 @@ use App\Http\Controllers\Programs\ProgramSearch;
 use Response;
 use App\Site;
 use App\Practicum;
+use App\Program;
 
 class Admin extends Controller
 
@@ -66,6 +67,12 @@ class Admin extends Controller
         
         
         return view('practicums', array('practicums' => $practicums, 'programs' => $programs));
+    }
+    
+    function programsAll() {
+        $programs = Program::paginate(20);
+        
+        return view('programs', array('programs' => $programs));
     }
     
     
@@ -175,5 +182,54 @@ class Admin extends Controller
         $practicum = Practicum::destroy($practicum_id);
         
         return Response::json($practicum);
+    }
+    
+    /*
+     *
+     * Programs CRUD
+     *
+     */
+    
+    function createProgram(Request $request) {
+         $program = Program::create($request->all());
+        
+        return Response::json($program);
+    }
+    
+    function readProgram($program_id) {
+        $program = Program::find($program_id);
+       
+        return Response::json($program);
+        
+    }
+    
+    function editProgram(Request $request, $program_id) {
+        
+    /* Find Program being up dated */
+     
+        $program = Program::find($program_id);
+        
+    /* Set values of $practicum to values of $request */
+        
+        $program->id = $request->id;
+        $program->program = $request->program;
+        $program->program_pretty = $request->program_pretty;
+        $program->department = $request->department;
+        $program->program_url = $request->program_url;
+        
+    /* Save updated $program to database */
+        
+        $program->save();
+        
+        return Response::json($program);
+    }
+    
+    function deleteProgram($program_id) {
+        
+    /* Destroy practicum record in database by $practicum_id */
+        
+        $program = Program::destroy($program_id);
+        
+        return Response::json($program);
     }
 }
