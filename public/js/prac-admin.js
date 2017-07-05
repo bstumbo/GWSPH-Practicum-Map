@@ -1,5 +1,13 @@
 $(document).ready(function(){
     
+    /*
+     * Reload Page with reset button
+    */
+    
+   $("#reset").click(function(){
+       window.location.href="/practicummap/public/practicums"
+    });
+     
       var url = "/practicummap/public/practicums-edit";
     
     //display modal form for task editing

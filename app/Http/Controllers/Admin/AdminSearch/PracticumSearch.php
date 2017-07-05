@@ -23,6 +23,25 @@ class PracticumSearch extends Controller
         
         $practicum = $practicum->newQuery();
         
+        
+        /*
+         * Filter by prac_id
+         */
+        
+          if ($filters->practicum_id_filter){
+            
+            $practicum->where('prac_id', 'LIKE', '%'.$filters->practicum_id_filter.'%')->get();
+        }
+                
+        /*
+         * Filter by Title
+         */
+        
+        if ($filters->practicum_plan_filter){
+            
+            $practicum->where('title', 'LIKE', '%'.$filters->practicum_plan_filter.'%')->get();
+        }
+        
         /*
          * Fitler Practicum by Program
          */

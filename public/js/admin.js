@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    
     //Display modal form for json import
     
     //display modal form for creating new task

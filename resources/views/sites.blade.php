@@ -11,10 +11,10 @@
 <h1>Sites</h1>
     <button id="btn-add" name="btn-add" class="btn btn-primary btn-xs">Add New Site</button>
     <div class="form-wrapper">
-    <form method="POST" action="/practicummap/public/sites" id="sitessearch" name="sitessearch" novalidate="">	
+    <form class="adminform" method="POST" action="/practicummap/public/sites" id="sitessearch" name="sitessearch" novalidate="">	
       <div class="form-group error">
           <div class="col-sm-9">
-            <label>Search Organizations</label>
+            <label>Search Site Name</label>
             <input id="org_name_filter" name="org_name_filter" type="text"/>
           </div>        
       </div>
@@ -48,20 +48,6 @@
               </select>
           </div>        
       </div>
-        <!-- Removed Work Term Search
-		<div class="form-group error">
-          <div class="col-sm-9">
-              <select id="term" name="term">
-                <option selected="selected" value=null>Search by Work Term</option>
-                <option value="Spring 2016">Spring 2016</option>
-                <option value="Summer 2016">Summer 2016</option>
-                <option value="Fall 2016">Fall 2016</option>
-                <option value="Spring 2017">Spring 2017</option>
-                <option value="Summer 2017">Summer 2017</option>
-                <option value="Fall 2017">Fall 2017</option>
-              </select>
-          </div>        
-      </div> -->
       <div class="form-group error">
           <input id="submit" class="" type="submit" value="Submit">
       </div>
@@ -75,10 +61,8 @@
         <thead>
             <tr>
                 <th>Organization Name</th>
-                <th>Address</th>
                 <th>City</th>
                 <th>State</th>
-                <th>Zip Code</th>
                 <th>Country</th>
                 <th>Actions</th>
             </tr>
@@ -86,13 +70,11 @@
         <tbody id="sites">                    
             @foreach ($sites as $site)
                 <tr id="{{$site->id}}">
-                    <td style="width: 16%; text-align: center;">{{$site->org_name}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->address}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->city}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->state}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->zip}}</td>
-                    <td style="width: 16%; text-align: center;">{{$site->country}}</td>
-                    <td>
+                    <td style="width: 20%; text-align: center;">{{$site->org_name}}</td>
+                    <td style="width: 20%; text-align: center;">{{$site->city}}</td>
+                    <td style="width: 20%; text-align: center;">{{$site->state}}</td>
+                    <td style="width: 20%; text-align: center;">{{$site->country}}</td>
+                    <td style="width: 20%;">
                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$site->id}}">Edit</button>
                        <button class="btn btn-danger btn-xs btn-delete delete-site" value="{{$site->id}}">Delete</button>
                    </td>

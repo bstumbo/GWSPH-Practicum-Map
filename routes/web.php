@@ -16,7 +16,7 @@ Route::post('/departments', 'AppSearch@apply');
 Route::post('/sites', 'Admin\AdminSearch\SiteSearch@apply')->name('sites');
 Route::get('/upload', 'JSONUploader@index');
 Route::post('/uploaded', 'JSONUploader@uploadJSON');
-Route::get('/sites', 'Admin\Admin@sitesAll');
+Route::get('/sites', 'Admin\Admin@sitesAll')->name('sitesall');
 Route::get('/sites-edit/{site_id?}', 'Admin\Admin@readSite');
 Route::post('/sites-edit', 'Admin\Admin@createSite');
 Route::put('/sites-edit/{site_id?}', 'Admin\Admin@editSite');

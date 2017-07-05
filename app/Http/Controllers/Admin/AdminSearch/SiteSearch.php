@@ -40,6 +40,16 @@ class SiteSearch extends Controller
         
         $site = $site->newQuery();
         
+        
+        /*
+         * Filter by Title
+         */
+        
+        if ($filters->org_name_filter){
+            
+            $site->where('org_name', 'LIKE', '%'.$filters->org_name_filter.'%')->get();
+        }
+        
         /*
          * Fitler Site by city
          */

@@ -10,11 +10,17 @@
 <h1>Practicums</h1>
      <button id="btn-add" name="btn-add" class="btn btn-primary btn-xs">Add New Practicum</button>
     <div class="form-wrapper">
-    <form method="POST" action="/practicummap/public/practicums" id="practicumsearch" name="practicumsearch" novalidate="">	
-      <div class="form-group error">
+    <form class="adminform" method="POST" action="/practicummap/public/practicums" id="practicumsearch" name="practicumsearch" novalidate="">	
+       <div class="form-group error">
           <div class="col-sm-9">
-            <label>Search Practicum Plan Title</label>
-            <input id="practicum_plan_filter" name="practicum_plan_filter" type="text"/>
+            <label>Search by Plan Id</label>
+            <input class="select2 select2 select2-container select2-selection--single select2-selection__rendered" id="practicum_id_filter" name="practicum_id_filter" type="text"/>
+          </div>        
+      </div>
+	  <div class="form-group error">
+          <div class="col-sm-9">
+            <label>Search Plan Title</label>
+            <input class="select2 select2-container select2-selection--single select2-selection__rendered" id="practicum_plan_filter" name="practicum_plan_filter" type="text"/>
           </div>        
       </div>
          <div class="form-group error">
@@ -54,26 +60,20 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Term</th>
-                <th>Description</th>
                 <th>Department</th>
-                <th>Site</th>
                 <th>Major</th>
-                <th>Program Url</th>
+				<th>Program Link</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody id="practicums">                    
             @foreach ($practicums as $practicum)
                 <tr id="{{$practicum->prac_id}}">
-                    <td style="width: 16%; text-align: center;">{{$practicum->title}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->term}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->description}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->department}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->site_id}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->major}}</td>
-                    <td style="width: 16%; text-align: center;">{{$practicum->program_link}}</td>
-                    <td>
+                    <td style="width: 20%; text-align: center;">{{$practicum->title}}</td>
+                    <td style="width: 20%; text-align: center;">{{$practicum->department}}</td>
+                    <td style="width: 20%; text-align: center;">{{$practicum->major}}</td>
+                    <td style="width: 20%; text-align: center;">{{$practicum->program_link}}</td>
+                    <td style="width: 20%;">
                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$practicum->prac_id}}">Edit</button>
                        <button class="btn btn-danger btn-xs btn-delete delete-prac" value="{{$practicum->prac_id}}">Delete</button>
                    </td>
