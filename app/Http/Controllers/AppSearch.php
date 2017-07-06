@@ -11,11 +11,13 @@ use App\Practicum;
 
 class AppSearch extends Controller
 {
-    public static function apply(Request $filters, Practicum $practicum, Site $site)
+    public static function apply(Request $filters, Site $site)
     {
         $sites = [];
         $siteprac = [];
         $practicumarray = [];
+        
+       $practicum = Practicum::with(array('programlink'));
         
         $practicum = $practicum->newQuery();
         $site = $site->newQuery();
@@ -99,8 +101,6 @@ class AppSearch extends Controller
         }
         
         $practicums = $practicum->get();
-        
-          
 
         foreach ($practicums as $practicum){
             $site = Site::find($practicum['site_id']);

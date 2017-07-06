@@ -43,7 +43,7 @@
             </div>
             <div class="modal-body">
                 <form id="frmSites" name="frmSites" class="form-horizontal" novalidate="">
-                    <div class="form-group error">
+					<div class="form-group error">
                         <label for="inputTask" class="col-sm-3 control-label">Program Code</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control has-error" id="program" name="program" value="">
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                <input type="hidden" id="site_id" name="site_id" value="0">
+                <input type="hidden" id="program_id" name="program_id" value="0">
             </div>
         </div>
     </div>

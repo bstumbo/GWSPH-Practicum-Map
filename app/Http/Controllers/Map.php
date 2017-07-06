@@ -36,7 +36,7 @@ class Map extends Controller
         $siteprac = [];
         
        foreach ($sites as $site) {
-            $practicums = Practicum::all()->where('site_id', $site->id);
+            $practicums = Practicum::with(array('programlink'))->where('site_id', $site->id)->get();
             $siteprac[] = array('site' => $site, 'practicums' => $practicums);
         }
         

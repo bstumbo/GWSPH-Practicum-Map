@@ -16,16 +16,10 @@ class ProgramFilter extends Controller
      */
     
     public function getPrograms() {
-        $collectprograms = [];
         
-        $programs = Program::all();
-        foreach($programs as $program){
-            $collectprograms[] = $program->program;
-        }
+        $programs = Program::orderby('program_pretty')->get();
         
-        sort($collectprograms);
-        
-        return $collectprograms;
+        return $programs;
         
     }
 }

@@ -211,7 +211,6 @@ class Admin extends Controller
         
     /* Set values of $practicum to values of $request */
         
-        $program->id = $request->id;
         $program->program = $request->program;
         $program->program_pretty = $request->program_pretty;
         $program->department = $request->department;

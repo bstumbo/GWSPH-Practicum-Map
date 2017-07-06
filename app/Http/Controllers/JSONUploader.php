@@ -82,14 +82,6 @@ class JSONUploader extends Controller
             $newPracticum->term = $data['term'];
             $newPracticum->department = $data['department'];
             $newPracticum->major = $data['major'];
-        
-            /*
-             * Lookup program url with major as foreign key
-             */
-            $urlquery = new Programs\ProgramSearch;
-            $test = $data['major'];
-            $url = $urlquery->getProgramUrl($test);
-            $newPracticum->program_link = $url;
             //$newPracticum->description = $data['Practicum']['description'];
             $newPracticum->site_id = $data['id'];
             $newPracticum->save();
@@ -116,14 +108,6 @@ class JSONUploader extends Controller
             $newPracticum->term = $data['term'];
             $newPracticum->department = $data['department'];
             $newPracticum->major = $data['major'];
-            
-            /*
-             * Lookup program url with major as foreign key
-             */
-            $urlquery = new Programs\ProgramSearch;
-            $test = $data['major'];
-            $url = $urlquery->getProgramUrl($test);
-            $newPracticum->program_link = $url;
             //$newPracticum->description = $data['Practicum']['description'];
             $newPracticum->site_id = $data['id'];
             $newPracticum->save();

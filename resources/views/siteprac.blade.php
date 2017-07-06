@@ -14,7 +14,9 @@
              <tr id="{{$prac->prac_id}}">
                <td style="width: 25%; text-align: center;">{{$prac->title}}</td>
                <td style="width: 25%; text-align: center;">{{$prac->term}}</td>
-               <td style="width: 25%; text-align: center;"><a target="_blank" href="{{$prac->program_link}}">{{$prac->major}}</a></td>
+               @if ($prac->major != null)
+               <td style="width: 25%; text-align: center;"><a target="_blank" href="{{$prac->programlink->program_url}}">{{$prac->programlink->program_pretty}}</a></td>
+               @endif
                <td style="width: 25%; text-align: center;">{{$prac->department}}</td>
              </tr>
            @endforeach 

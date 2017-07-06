@@ -161,7 +161,7 @@ $(document).ready(function() {
               <select id="program" name="program">
                 <option value="null">Search by Program</option>
                 @foreach($programs as $program)
-                  <option value="{{ $program }}">{{ $program }}</option>
+                  <option value="{{ $program->program }}">{{ $program->program_pretty }}</option>
                 @endforeach
               </select>
           </div>
@@ -180,20 +180,6 @@ $(document).ready(function() {
               </select>
           </div>        
       </div>
-        <!-- Removed Work Term Search
-		<div class="form-group error">
-          <div class="col-sm-9">
-              <select id="term" name="term">
-                <option selected="selected" value=null>Search by Work Term</option>
-                <option value="Spring 2016">Spring 2016</option>
-                <option value="Summer 2016">Summer 2016</option>
-                <option value="Fall 2016">Fall 2016</option>
-                <option value="Spring 2017">Spring 2017</option>
-                <option value="Summer 2017">Summer 2017</option>
-                <option value="Fall 2017">Fall 2017</option>
-              </select>
-          </div>        
-      </div> -->
         <div class="form-group error">
           <div class="col-sm-9">
               <select id="city" name="city" value="">

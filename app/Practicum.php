@@ -13,6 +13,10 @@ class Practicum extends BaseModel
     
     public $incrementing = false;
     protected $table = 'practicums';
-    protected $fillable = array('prac_id','title', 'term', 'description', 'department', 'site_id', 'major', 'program_link' );
+    protected $fillable = array('prac_id','title', 'term', 'description', 'department', 'site_id', 'major');
 
+    
+    function programlink() {
+        return $this->BelongsTo('App\Program', 'major', 'program');
+    }
 }

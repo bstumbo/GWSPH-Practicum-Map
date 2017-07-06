@@ -28,7 +28,7 @@
               <select id="program_filter" name="program_filter">
                 <option value="null">Search by Program</option>
                 @foreach($programs as $program)
-                  <option value="{{ $program }}">{{ $program }}</option>
+                  <option value="{{ $program->program }}">{{ $program->program_pretty }}</option>
                 @endforeach
               </select>
           </div>
@@ -62,18 +62,16 @@
                 <th>Title</th>
                 <th>Department</th>
                 <th>Major</th>
-				<th>Program Link</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody id="practicums">                    
             @foreach ($practicums as $practicum)
                 <tr id="{{$practicum->prac_id}}">
-                    <td style="width: 20%; text-align: center;">{{$practicum->title}}</td>
-                    <td style="width: 20%; text-align: center;">{{$practicum->department}}</td>
-                    <td style="width: 20%; text-align: center;">{{$practicum->major}}</td>
-                    <td style="width: 20%; text-align: center;">{{$practicum->program_link}}</td>
-                    <td style="width: 20%;">
+                    <td style="width: 25%; text-align: center;">{{$practicum->title}}</td>
+                    <td style="width: 25%; text-align: center;">{{$practicum->department}}</td>
+                    <td style="width: 25%; text-align: center;">{{$practicum->major}}</td>
+                    <td style="width: 25%;">
                        <button class="btn btn-warning btn-xs btn-detail open-modal" value="{{$practicum->prac_id}}">Edit</button>
                        <button class="btn btn-danger btn-xs btn-delete delete-prac" value="{{$practicum->prac_id}}">Delete</button>
                    </td>
