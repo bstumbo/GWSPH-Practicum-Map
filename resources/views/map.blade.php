@@ -154,7 +154,10 @@ $(document).ready(function() {
 <!-- Drupal Section Content End -->
 
   
-<div class="form-wrapper">
+  <div id="mapid" style="margin-bottom: 10px; width: 100%; height: 400px; position: relative; outline: none;"></div>
+  
+  <div id="#"></div>
+  <div class="form-wrapper">
     <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
 	  <div class="form-group error">
           <div class="col-sm-9">
@@ -218,10 +221,6 @@ $(document).ready(function() {
       </div>
     </form>
   </div>  
-  
-  <div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div>
-  
-  <div id="#"></div>
    
   <div style="margin: 20px;">
     <div id="orgheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Organization Name</a></strong></p></div>

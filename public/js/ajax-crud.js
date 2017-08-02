@@ -64,9 +64,12 @@ $(document).ready(function(){
                         divHTML += '<div style="width:100%; display:none;" class="sub-row"><table style="width: 100%; border: 1px solid black;"> <th style="width: 25%; text-align: center;"><strong>Practicum Plan Titles</strong></th><th style="width: 25%; text-align: center;"><strong>Work Terms</strong></th><th style="width: 25%; text-align: center;"><strong>Major</strong></th><th style="width: 25%; text-align: center;"><strong>Departments/Tracks</strong></th>';
                         $.each(item.practicums, function (h, items){
                          
+                        if (items.programlink !== null) { //if program link is null, won't be returned
+                         
                          divHTML += '<tr><td style="width: 25%; text-align: center;">' + items.title + '</td><td style="width: 25%; text-align: center;">' + items.term + '</td><td style="width: 25%; text-align: center;"><a target="_blank" href="' + items.programlink.program_url + '">' + items.programlink.program_pretty + '</a></td><td style="width: 33%; text-align: center;">' + items.department + '</td></tr>';
                
-                            
+                            }
+                        
                         });
                         
                         divHTML += '</table></div></div>';
