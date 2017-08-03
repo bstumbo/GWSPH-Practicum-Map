@@ -15,8 +15,10 @@ $(document).ready(function(){
     $("#practicum-list").on("click", ".site-row", function(){
         if ($(this).hasClass("expanded")) {
             $(this).removeClass("expanded");
+            $(this).find('i.fa-minus').removeClass("fa-minus").addClass("fa-plus");        
         } else {
         $(this).addClass("expanded");
+        $(this).find('i.fa-plus').removeClass("fa-plus").addClass("fa-minus");  
         }
          $(".sub-row", this).toggle();
     });
@@ -59,9 +61,9 @@ $(document).ready(function(){
                     console.log("Made it back");
                     var divHTML = '';
                     $.each(response.siteprac, function (i, item) {
-                        divHTML += '<div class="site-row" style="clear:both; border: 1px solid black; margin: 20px;"><div class="org_name site-div" style="width: 25%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city site-div" style="width: 25%; float: left;"><p align=center>' + item.site.city + '</div><div class="state site-div"  style="width: 25%; float: left;"><p align=center>' + item.site.state + '</div><div class="country site-div" style="width: 25%; float: left;"><p align=center>' + item.site.country + '</div>';
+                       divHTML += '<div class="site-row"><div class="org_name site-div" style="width: 24%; float: left;"><p align=center>' + item.site.org_name + '</div><div class="city site-div" style="width: 24%; float: left;"><p align=center>' + item.site.city + '</div><div class="state site-div"  style="width: 24%; float: left;"><p align=center>' + item.site.state + '</div><div class="country site-div" style="width: 24%; float: left;"><p align=center>' + item.site.country + '</div><div class="site-div" style="width: 4%; float: left;"><span><i class="fa fa-plus plus-top"></i></span></div>';
                         
-                        divHTML += '<div style="width:100%; display:none;" class="sub-row"><table style="width: 100%; border: 1px solid black;"> <th style="width: 25%; text-align: center;"><strong>Practicum Plan Titles</strong></th><th style="width: 25%; text-align: center;"><strong>Work Terms</strong></th><th style="width: 25%; text-align: center;"><strong>Major</strong></th><th style="width: 25%; text-align: center;"><strong>Departments/Tracks</strong></th>';
+                        divHTML += '<div style="display:none;" class="sub-row"><table class="practicum-table" style="width: 100%; border: 1px solid black;"> <th style="width: 25%; text-align: center;"><strong>Practicum Plan Titles</strong></th><th style="width: 25%; text-align: center;"><strong>Work Terms</strong></th><th style="width: 25%; text-align: center;"><strong>Major</strong></th><th style="width: 25%; text-align: center;"><strong>Departments/Tracks</strong></th>';
                         $.each(item.practicums, function (h, items){
                          
                         if (items.programlink !== null) { //if program link is null, won't be returned

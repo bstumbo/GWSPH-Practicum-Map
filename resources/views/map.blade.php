@@ -4,6 +4,7 @@
 <link href="../public/css/jquery.paginate.css" rel="stylesheet" />
 <link href="../public/css/bootstrap.css" rel="stylesheet" />
 <link href="../public/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="../public/css/font-awesome.min.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../public/js/select2.min.js"></script>
 <script src="../public/js/jquery.paginate.js"></script>
@@ -154,79 +155,80 @@ $(document).ready(function() {
 <!-- Drupal Section Content End -->
 
   
-  <div id="mapid" style="margin-bottom: 10px; width: 100%; height: 400px; position: relative; outline: none;"></div>
+  <div id="mapid" style="width: 100%; height: 400px; position: relative; outline: none;"></div>
   
   <div id="#"></div>
-  <div class="form-wrapper">
-    <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
-	  <div class="form-group error">
-          <div class="col-sm-9">
-              <select id="program" name="program">
-                <option value="null">Search by Program</option>
-                @foreach($programs as $program)
-                  <option value="{{ $program->program }}">{{ $program->program_pretty }}</option>
-                @endforeach
-              </select>
-          </div>
-	  </div>	
-      <div class="form-group error">
-          <div class="col-sm-9">
-              <select id="department" name="department">
-               <option selected="selected" value=null>Search by Department</option>
-                <option value="Epidemiology and Biostatistics">Epidemiology and Biostatistics</option>
-                <option value="Environmental and Occupational Health">Environmental and Occupational Health</option>
-                <option value="Exercise and Nutrition Sciences">Exercise and Nutrition Sciences</option>
-                  <option value="Global Health">Global Health</option>
-                  <option value="Health Policy and Management">Health Policy and Management</option>
-                <option value="Online MPH @ GW">Online MPH @ GW</option>
-                  <option value="Prevention and Community Health">Prevention and Community Health</option>
-              </select>
-          </div>        
-      </div>
-        <div class="form-group error">
-          <div class="col-sm-9">
-              <select id="city" name="city" value="">
-                 <option value="null">Select a City</option>
-                  @foreach($cities as $city)
-                    <option value="{{ $city }}">{{ $city }}</option>
-                  @endforeach
-              </select>
-          </div>        
-      </div>
-        <div class="form-group error">
-          <div class="col-sm-9">
-              <select id="state" name="state" value="">
-              <option value="null">Select a State</option>
-                @foreach($states as $state)
-                  <option value="{{ $state }}">{{ $state }}</option>
-                @endforeach
-              </select>
-          </div>        
-      </div>
-        <div class="form-group error">
-          <div class="col-sm-9">
-              <select id="country" name="country" value="">
-              <option value="null">Select a Country</option>
-                @foreach($countries as $country)
-                  <option value="{{ $country }}">{{ $country }}</option>
-                @endforeach
-              </select>
-          </div>        
-      </div>
-      <div class="form-group error">
-          <input id="submit" class="" type="submit" value="Submit">
-      </div>
-      <div class="form-group error">
-          <input class="" id="reset" type="reset" value="Reset">
-      </div>
-    </form>
-  </div>  
-   
-  <div style="margin: 20px;">
-    <div id="orgheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Organization Name</a></strong></p></div>
-    <div id="cityheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>City</a></strong></p></div>
-    <div id="stateheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>State</a></strong></p></div>
-    <div id="countryheader" class="sort" style="width: 25%; float: left;"><p align=center><strong>Country</a></strong></p></div>
+  <div class="filter-wrapper">
+	<div class="form-wrapper">
+	  <form method="POST" action="/practicummap/public/departments" id="frmTasks" name="frmTasks" class="ajax" novalidate="">
+		<div class="form-group error">
+			<div class="col-sm-9">
+				<select id="program" name="program">
+				  <option value="null">Search by Program</option>
+				  @foreach($programs as $program)
+					<option value="{{ $program->program }}">{{ $program->program_pretty }}</option>
+				  @endforeach
+				</select>
+			</div>
+		</div>	
+		<div class="form-group error">
+			<div class="col-sm-9">
+				<select id="department" name="department">
+				 <option selected="selected" value=null>Search by Department</option>
+				  <option value="Epidemiology and Biostatistics">Epidemiology and Biostatistics</option>
+				  <option value="Environmental and Occupational Health">Environmental and Occupational Health</option>
+				  <option value="Exercise and Nutrition Sciences">Exercise and Nutrition Sciences</option>
+					<option value="Global Health">Global Health</option>
+					<option value="Health Policy and Management">Health Policy and Management</option>
+				  <option value="Online MPH @ GW">Online MPH @ GW</option>
+					<option value="Prevention and Community Health">Prevention and Community Health</option>
+				</select>
+			</div>        
+		</div>
+		  <div class="form-group error">
+			<div class="col-sm-9">
+				<select id="city" name="city" value="">
+				   <option value="null">Select a City</option>
+					@foreach($cities as $city)
+					  <option value="{{ $city }}">{{ $city }}</option>
+					@endforeach
+				</select>
+			</div>        
+		</div>
+		  <div class="form-group error">
+			<div class="col-sm-9">
+				<select id="state" name="state" value="">
+				<option value="null">Select a State</option>
+				  @foreach($states as $state)
+					<option value="{{ $state }}">{{ $state }}</option>
+				  @endforeach
+				</select>
+			</div>        
+		</div>
+		  <div class="form-group error">
+			<div class="col-sm-9">
+				<select id="country" name="country" value="">
+				<option value="null">Select a Country</option>
+				  @foreach($countries as $country)
+					<option value="{{ $country }}">{{ $country }}</option>
+				  @endforeach
+				</select>
+			</div>        
+		</div>
+		  <div class="submit-button">
+			  <input id="submit" class="btn-small-green-border-light btn-medium btn-round button no-margin-lr" type="submit" value="Submit">
+			  <p align="center" style="margin: 0px 10px 0px 10px; width: 100%;"><a style="color: white;" href="" id="reset">Reset</a></p>
+		  </div>
+		  
+	  </form>
+	</div>  
+  </div> 
+  <div class="practicum-list-header">
+    <div id="orgheader" class="sort" style="width: 24%; float: left;"><p align=center><strong>Organization Name</strong></p></div>
+    <div id="cityheader" class="sort" style="width: 24%; float: left;"><p align=center><strong>City</strong></p></div>
+    <div id="stateheader" class="sort" style="width: 24%; float: left;"><p align=center><strong>State</strong></p></div>
+    <div id="countryheader" class="sort" style="width: 24%; float: left;"><p align=center><strong>Country</strong></p></div>
+	<div class="sort" style="width: 4%; float: left;"><p align=center>&nbsp;</p></div>
   </div>
   <div id="practicum-list"> 
     @include('siteprac')
