@@ -15,7 +15,7 @@
   
 <!-- Drupal Styles and JS -->
 <style>
-@import url("http://publichealth.gwu.edu/sites/all/themes/gwu/css/global/gwu.global.css?os685u");
+@import url("https://publichealth.gwu.edu/sites/all/themes/gwu/css/global/gwu.global.css?os685u");
 </style>
 <link href="../public/css/gwu-style.css" rel="stylesheet" />
 
